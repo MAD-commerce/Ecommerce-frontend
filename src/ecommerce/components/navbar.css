@@ -1,0 +1,38 @@
+.header {
+    background-color: var(--header-color);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.nav {
+    height: calc(4.5rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1rem;
+    color: var(--header-text-color);
+}
+.nav__menu {
+
+}   
+.nav__list {
+    display: flex;
+    column-gap: 2rem;
+}
+.nav__item {
+
+}
+
+.nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--small-font-size);
+    color: var(--tittle-color);
+    font-weight: var(--font-medium);
+    transition: .3s;
+}
+.nav__icon {
+    font-size: 22px;
+}
