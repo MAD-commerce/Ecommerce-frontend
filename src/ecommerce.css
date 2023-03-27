@@ -4,9 +4,10 @@
 
     /*========== Colors ==========*/
     --header-color: black;
-    --primary-color: #a730d8;
+    /* --primary-color: #a730d8; */
     --header-text-color: white;
-
+    --body-color: #eeeeee;
+    
     /*========== Font and typography ==========*/
     --body-font: "Poppins", sans-serif;
 
@@ -25,8 +26,32 @@
     --smaller-font-size: 0.813rem;
     --tiny-font-size: 0.625rem;
 
+    /*========== Margenes Bottom ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --mb-0-25: 0.25rem;
+    --mb-0-5: 0.5rem;
+    --mb-0-75: 0.75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
 }
 
+/* Responsive typography */
+@media screen and (max-width: 992px) {
+    :root {
+      --big-font-size: 2.75rem;
+      --h1-font-size: 1.5rem;
+      --h2-font-size: 1.25rem;
+      --h3-font-size: 1rem;
+      --normal-font-size: 0.938rem;
+      --small-font-size: 0.813rem;
+      --smaller-font-size: 0.75rem;
+    }
+}
+
+/*=============== BASE ===============*/
 * {
     margin: 0;
     padding: 0;
@@ -37,8 +62,9 @@ body,
 button,
 input,
 textarea {
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
 }
 
 ul {
@@ -49,6 +75,8 @@ a {
   text-decoration: none;
 }
 
+
+/*=============== REUSABLE CSS CLASSES ===============*/
 .container {
     max-width: 968px;
     margin-left: auto;
@@ -58,3 +86,60 @@ a {
     display: grid;
     grid-gap: 1.5rem;
 }
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+/* Responsividad */
+@media screen and (max-width: 992px) {
+  .container {
+    margin-left: var(--mb-1-5);
+    margin-right: var(--mb-1-5);
+  }
+
+  .button {
+    padding: 1rem 1.75rem;
+  }
+
+  .button__icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  body {
+    margin: 0 0 var(--header-height) 0;
+  }
+
+  .section {
+    padding: 2rem 0 2rem;
+  }
+
+  .section__subtitle {
+    margin-bottom: var(--mb-3);
+  }
+}
+
+@media screen and (max-width: 576px) {
+}
+
+/* For small devices */
+@media screen and (max-width: 350px) {
+  :root {
+    --big-font-size: 2.25rem;
+  }
+
+  .container {
+    margin-left: var(--mb-1);
+    margin-right: var(--mb-1);
+  }
+}
+
+

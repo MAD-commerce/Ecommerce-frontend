@@ -1,15 +1,9 @@
-import { LoginPage } from "./ecommerce/pages/Login/LoginPage"
+import { LoginPage } from './ecommerce/pages/Login/LoginPage';
 
-
-export const Ecommerce = () => {
-
-    return (
-        <>
-            
-            <LoginPage/>
-            
-        </>
-    )
-    
-}
-
+export const Ecommerce = (): JSX.Element => {
+	return (
+		<>
+			<LoginPage />
+		</>
+	);
+};
