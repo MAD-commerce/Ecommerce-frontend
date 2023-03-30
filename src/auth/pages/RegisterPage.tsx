@@ -1,24 +1,25 @@
-import { useForm } from '../../../hooks';
-import { NavBar } from '../../components/navbar/NavBar';
-import logo from '../../../assets/logo-png.png';
+import { NavBar } from '../components/NavBar';
+import { useForm } from '../../hooks';
+import logo from '../../assets/logo-png.png';
 
-import './loginPage.css';
+import './auth.css';
 
 const loginFormFields = {
-	loginEmail: '',
-	loginPassword: '',
+	registerName: '',
+	registerEmail: '',
+	registerPassword: '',
 };
 
-export const LoginPage = (): JSX.Element => {
+export const RegisterPage = () => {
 	const {
-		loginEmail,
-		loginPassword,
+		registerName,
+		registerEmail,
+		registerPassword,
 		onInputChange: onLoginInputChange,
 	} = useForm(loginFormFields);
 
 	const loginSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
-		console.log({ loginEmail, loginPassword });
 		// startLogin({ email: loginEmail, password: loginPassword });
 	};
 
@@ -50,45 +51,56 @@ export const LoginPage = (): JSX.Element => {
 				</header>
 
 				<main className='main'>
-					<div className='login grid'>
-						<div className='login__box grid'>
-							<img src={logo} alt='logo' className='logo' />
+					<div className='page grid'>
+						<div className='auth__box grid'>
+							<img className='auth__logo' src={logo} alt='logo' />
 							<h1>Iniciar sesión</h1>
-							<form onSubmit={loginSubmit} className='form grid'>
+							<form className='form grid' onSubmit={loginSubmit}>
 								<div className='group-input'>
-									<i className='bx bxs-user-circle icon'></i>
+									<i className='bx bxs-user input-icon'></i>
+									<input
+										type='text'
+										placeholder='Name'
+										className='input'
+										name='registerName'
+										value={registerName}
+										onChange={onLoginInputChange}
+									/>
+								</div>
+								<div className='group-input'>
+									<i className='bx bxs-user-circle input-icon'></i>
 									<input
 										type='email'
 										placeholder='Email'
 										className='input'
-										name='loginEmail'
-										value={loginEmail}
+										name='registerEmail'
+										value={registerEmail}
 										onChange={onLoginInputChange}
 									/>
 								</div>
-								<div className=''>
-									<div className='group-input'>
-										<i className='bx bxs-lock-alt icon'></i>
-										<input
-											type='password'
-											placeholder='Contraseña'
-											className='input'
-											name='loginPassword'
-											value={loginPassword}
-											onChange={onLoginInputChange}
-										/>
-									</div>
-									<a className='recovery'>Recuperar contraseña</a>
+								<div className='group-input'>
+									<i className='bx bxs-lock-alt input-icon'></i>
+									<input
+										type='password'
+										placeholder='Contraseña'
+										className='input'
+										name='registerPassword'
+										value={registerPassword}
+										onChange={onLoginInputChange}
+									/>
 								</div>
-								<input type='submit' className='submit' value='registrar' />
+								<input
+									className='submit-button'
+									type='submit'
+									value='Registrese'
+								/>
 							</form>
 							<div className='links'>
-								<a className='' href='#'>
-									Iniciar con Google
+								<a className='' href=''>
+									Registrarse con Google
 								</a>
-								-
-								<a className='' href='#'>
-									crear cuenta
+								<a className='' href='/#/auth/login'>
+									Iniciar sesión
 								</a>
 							</div>
 						</div>

@@ -26,6 +26,7 @@ module.exports = {
   ],
   rules: {
     'no-unused-vars': 'warn',
-    "@typescript-eslint/strict-boolean-expressions": "none"
+    "@typescript-eslint/strict-boolean-expressions": "none",
+    'eslint-disable-next-line': 'no-console'
   }
 }

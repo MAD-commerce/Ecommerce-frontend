@@ -4,9 +4,9 @@
 
     /*========== Colors ==========*/
     --header-color: black;
-    /* --primary-color: #a730d8; */
     --header-text-color: white;
     --body-color: #eeeeee;
+    --items-color: black;
     
     /*========== Font and typography ==========*/
     --body-font: "Poppins", sans-serif;

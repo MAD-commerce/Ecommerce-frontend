@@ -1,9 +1,12 @@
-import { LoginPage } from './ecommerce/pages/Login/LoginPage';
+import { HashRouter } from 'react-router-dom';
+import { AppRouter } from './router/AppRouter';
 
 export const Ecommerce = (): JSX.Element => {
 	return (
 		<>
-			<LoginPage />
+			<HashRouter>
+				<AppRouter />
+			</HashRouter>
 		</>
 	);
 };
