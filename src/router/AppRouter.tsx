@@ -1,9 +1,19 @@
+import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { LoginPage, RegisterPage } from '../auth';
 import { HomePage } from '../ecommerce/pages/HomePage';
+import { useAuthStore } from '../hooks/useAuthStore';
 
 export const AppRouter = (): JSX.Element => {
-	const status: string = 'not-authenticated';
+	const { status, checkAuthToken } = useAuthStore();
+
+	useEffect(() => {
+		checkAuthToken();
+	}, []);
+
+	if (status === 'checking') {
+		return <h1>carganding</h1>;
+	}
 
 	return (
 		<>

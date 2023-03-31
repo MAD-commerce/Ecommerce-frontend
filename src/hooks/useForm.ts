@@ -1,19 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 
-type FormValidation = Record<string, [Function, string]>;
-
-type FormState = Record<string, any>;
-
-type ValidationResult = Record<string, string | null>;
-
-interface FormHook {
-	[key: string]: any;
-	formState: FormState;
-	onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onResetForm: () => void;
-	isFormValid: boolean;
-}
-
 export const useForm = (
 	initialForm: FormState = {},
 	formValidations: FormValidation = {}

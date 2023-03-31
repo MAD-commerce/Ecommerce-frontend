@@ -11,8 +11,10 @@
     "lint": "eslint --fix . --ext .ts,.tsx"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
@@ -28,6 +30,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.32.2",
     "prettier": "^2.8.7",
+    "react-devtools": "^4.27.4",
     "typescript": "*",
     "vite": "^4.1.0"
   },
