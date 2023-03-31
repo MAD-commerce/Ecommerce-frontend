@@ -1,4 +1,4 @@
-import { NavBar } from '../components/NavBar';
+import { NavBar } from '../../components/NavBar';
 import { useForm } from '../../hooks';
 import logo from '../../assets/logo-png.png';
 

@@ -1,4 +1,4 @@
-import { NavBar } from '../components/NavBar';
+import { NavBar } from '../../components/NavBar';
 import { useForm } from '../../hooks';
 import logo from '../../assets/logo-png.png';
 
@@ -27,14 +27,14 @@ export const LoginPage = (): JSX.Element => {
 	return (
 		<>
 			<div className='loginPage'>
-				<header className='header'>
+				<header className='header-auth'>
 					<NavBar />
 
 					<div className='header__wave'>
 						<div className='header__wave-box'>
 							<svg
 								id='svg'
-								viewBox='0 0 1200 350'
+								viewBox='0 0 1200 430'
 								preserveAspectRatio='none'
 								xmlns='http://www.w3.org/2000/svg'
 								className='transition duration-200 ease-in-out delay-150 wave-container'

@@ -3,7 +3,7 @@ import './navbar.css';
 export const NavBar = (): JSX.Element => {
 	return (
 		<div className='header'>
-			<div className='nav container container__header'>
+			<div className='nav container'>
 				<div className='nav__logo'>EcoClothes</div>
 				<div className='nav__menu'>
 					<ul className='nav__list'>

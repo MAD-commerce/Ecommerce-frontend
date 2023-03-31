@@ -7,9 +7,10 @@ import { useAuthStore } from '../hooks/useAuthStore';
 export const AppRouter = (): JSX.Element => {
 	const { status, checkAuthToken } = useAuthStore();
 
-	useEffect(() => {
-		checkAuthToken();
-	}, []);
+	// todo: verificar el token
+	// useEffect(() => {
+	// 	checkAuthToken();
+	// }, []);
 
 	if (status === 'checking') {
 		return <h1>carganding</h1>;
