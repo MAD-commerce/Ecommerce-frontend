@@ -26,14 +26,14 @@ export const RegisterPage = () => {
 	return (
 		<>
 			<div className='loginPage'>
-				<header className='header'>
+				<header className='header-auth'>
 					<NavBar />
 
 					<div className='header__wave'>
 						<div className='header__wave-box'>
 							<svg
 								id='svg'
-								viewBox='0 0 1200 350'
+								viewBox='0 0 1200 430'
 								preserveAspectRatio='none'
 								xmlns='http://www.w3.org/2000/svg'
 								className='transition duration-200 ease-in-out delay-150 wave-container'
@@ -54,7 +54,7 @@ export const RegisterPage = () => {
 					<div className='page grid'>
 						<div className='auth__box grid'>
 							<img className='auth__logo' src={logo} alt='logo' />
-							<h1>Iniciar sesión</h1>
+							<h1>Registrese</h1>
 							<form className='form grid' onSubmit={loginSubmit}>
 								<div className='group-input'>
 									<i className='bx bxs-user input-icon'></i>
@@ -99,7 +99,7 @@ export const RegisterPage = () => {
 								<a className='' href=''>
 									Registrarse con Google
 								</a>
-								<a className='' href='/#/auth/login'>
+								<a className='' href='/auth/login'>
 									Iniciar sesión
 								</a>
 							</div>

@@ -94,7 +94,7 @@ export const LoginPage = (): JSX.Element => {
 								<a className='' href=''>
 									Iniciar con Google
 								</a>
-								<a className='' href='/#/auth/register'>
+								<a className='' href='/auth/register'>
 									Crear cuenta
 								</a>
 							</div>
