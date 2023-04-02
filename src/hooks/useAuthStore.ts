@@ -1,11 +1,14 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux/es/exports';
+
 import {
 	onChecking,
 	onLogin,
 	onLogout,
 	clearErrorMessage,
 } from '../store/auth/authSlice';
+import { useEffect } from 'react';
+import { gapi } from 'gapi-script';
 
 export const useAuthStore = () => {
 	const { status, user, errorMessage } = useSelector(
@@ -45,11 +48,13 @@ export const useAuthStore = () => {
 			}, 10);
 		}
 	};
+
 	const checkAuthToken = async () => {
 		try {
 			// Todo: peticion
 		} catch (error) {}
 	};
+
 	const startLogout = async () => {
 		try {
 			// Todo: peticion

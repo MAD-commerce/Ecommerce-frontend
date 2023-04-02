@@ -1,28 +1,12 @@
+import { useState } from 'react';
+import { Register } from '../components/Register';
+import { Login } from '../components/Login';
 import { NavBar } from '../../components/NavBar';
-import { useForm } from '../../hooks';
-import logo from '../../assets/logo-png.png';
 
 import './auth.css';
-import { useAuthStore } from '../../hooks/useAuthStore';
 
-const loginFormFields = {
-	loginEmail: '',
-	loginPassword: '',
-};
-
-export const LoginPage = (): JSX.Element => {
-	const { startLogin } = useAuthStore();
-
-	const {
-		loginEmail,
-		loginPassword,
-		onInputChange: onLoginInputChange,
-	} = useForm(loginFormFields);
-
-	const loginSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-		event.preventDefault();
-		startLogin({ email: loginEmail, password: loginPassword });
-	};
+export const Auth = () => {
+	const [selectPage, setSelectPage] = useState('Login');
 
 	return (
 		<>
@@ -51,56 +35,11 @@ export const LoginPage = (): JSX.Element => {
 					</div>
 				</header>
 
-				<main className='main'>
-					<div className='page grid'>
-						<div className='auth__box grid'>
-							<img className='auth__logo' src={logo} alt='logo' />
-							<h1>Iniciar sesión</h1>
-							<form className='form grid' onSubmit={loginSubmit}>
-								<div className='group-input'>
-									<i className='bx bxs-user-circle input-icon'></i>
-									<input
-										type='email'
-										placeholder='Email'
-										className='input'
-										name='loginEmail'
-										value={loginEmail}
-										onChange={onLoginInputChange}
-									/>
-								</div>
-								<div>
-									<div className='group-input'>
-										<i className='bx bxs-lock-alt input-icon'></i>
-										<input
-											type='password'
-											placeholder='Contraseña'
-											className='input'
-											name='loginPassword'
-											value={loginPassword}
-											onChange={onLoginInputChange}
-										/>
-									</div>
-									<a className='recovery__text' href='#'>
-										Recuperar contraseña
-									</a>
-								</div>
-								<input
-									className='submit-button'
-									type='submit'
-									value='Ingrese'
-								/>
-							</form>
-							<div className='links'>
-								<a className='' href=''>
-									Iniciar con Google
-								</a>
-								<a className='' href='/auth/register'>
-									Crear cuenta
-								</a>
-							</div>
-						</div>
-					</div>
-				</main>
+				{selectPage === 'Login' ? (
+					<Login selectPage={setSelectPage} />
+				) : (
+					<Register selectPage={setSelectPage} />
+				)}
 			</div>
 		</>
 	);

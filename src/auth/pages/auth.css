@@ -53,6 +53,8 @@
     width: 90px;
     bottom: 7px;
     right: 7px;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .form {
@@ -109,7 +111,7 @@ input {
 
 .links {
     display: flex;
-    width: 100%;
+    width: 90%;
     justify-content: space-around;
 }
 .links a{

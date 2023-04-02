@@ -73,6 +73,7 @@ ul {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 
@@ -91,7 +92,9 @@ a {
     justify-content: center;
     align-items: center;
 }
-
+.button {
+    cursor: pointer;
+}
 
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */
@@ -102,14 +105,6 @@ a {
     margin-right: var(--mb-1-5);
   }
 
-  .button {
-    padding: 1rem 1.75rem;
-  }
-
-  .button__icon {
-    width: 22px;
-    height: 22px;
-  }
 }
 
 /* For medium devices */
@@ -118,13 +113,6 @@ a {
     margin: 0 0 var(--header-height) 0;
   }
 
-  .section {
-    padding: 2rem 0 2rem;
-  }
-
-  .section__subtitle {
-    margin-bottom: var(--mb-3);
-  }
 }
 
 @media screen and (max-width: 576px) {
