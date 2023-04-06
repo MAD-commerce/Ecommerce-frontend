@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 interface AuthState {
 	status: string;
 	user: {};
-	errorMessage: undefined;
+	errorMessage: undefined | string;
 }
 
 const initialState: AuthState = {
@@ -16,22 +16,25 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		onChecking: state => {
+		onChecking: (state: AuthState) => {
 			state.status = 'checking';
 			state.user = {};
 			state.errorMessage = undefined;
 		},
-		onLogin: (state, { payload }) => {
+		onLogin: (
+			state: AuthState,
+			{ payload }: { payload: Record<string, unknown> }
+		) => {
 			state.status = 'authenticated';
 			state.user = payload;
 			state.errorMessage = undefined;
 		},
-		onLogout: (state, { payload }) => {
+		onLogout: (state: AuthState, { payload }: { payload: string }) => {
 			state.status = 'not-authenticated';
 			state.user = {};
 			state.errorMessage = payload;
 		},
-		clearErrorMessage: state => {
+		clearErrorMessage: (state: AuthState) => {
 			state.errorMessage = undefined;
 		},
 	},

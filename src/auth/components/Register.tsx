@@ -1,9 +1,9 @@
 import { useForm } from '../../hooks';
+import { googleButton } from './googleButton';
+
 import logo from '../../assets/logo-png.png';
 
 import '../pages/auth.css';
-import { useGoogleLogin } from '../hooks/useGoogleLogin';
-import GoogleLogin from 'react-google-login';
 
 const loginFormFields = {
 	registerName: '',
@@ -21,8 +21,6 @@ export const Register = ({
 		registerPassword,
 		onInputChange: onLoginInputChange,
 	} = useForm(loginFormFields);
-
-	const { clientID, cookies, onSuccess, onFailture } = useGoogleLogin();
 
 	const loginSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
@@ -77,26 +75,10 @@ export const Register = ({
 							/>
 						</form>
 						<div className='links'>
-							<GoogleLogin
-								render={renderProps => (
-									<a
-										className='button__google'
-										onClick={renderProps.onClick}
-										// disabled={renderProps.disabled}
-									>
-										Iniciar con Google
-									</a>
-								)}
-								clientId={clientID}
-								onSuccess={onSuccess}
-								onFailure={onFailture}
-								cookiePolicy={cookies}
-							>
-								<span>Registrarse con Google</span>
-							</GoogleLogin>
 							<a className='button' onClick={() => selectPage('Login')}>
 								Iniciar sesión
 							</a>
+							{googleButton()}
 						</div>
 					</div>
 				</div>

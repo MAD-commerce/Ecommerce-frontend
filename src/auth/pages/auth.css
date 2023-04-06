@@ -110,13 +110,27 @@ input {
 }
 
 .links {
+    height: 100px;
     display: flex;
     width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     justify-content: space-around;
 }
 .links a{
-    color: black;
+    color: #000000;
 }
+
+.google__button {
+    transition: transform .4s;
+}
+.google__button:hover {
+    transform: scale(1.1);
+}
+/* .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+    background-color: #000000;
+} */
 
 @keyframes pathAnim-0{
     0%{

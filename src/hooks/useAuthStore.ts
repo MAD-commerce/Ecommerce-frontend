@@ -7,22 +7,71 @@ import {
 	onLogout,
 	clearErrorMessage,
 } from '../store/auth/authSlice';
-import { useEffect } from 'react';
-import { gapi } from 'gapi-script';
+
+import ecommerceApi from '../api/ecommerceApi';
+import jwt_decode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 export const useAuthStore = () => {
 	const { status, user, errorMessage } = useSelector(
 		(state: { auth: AuthState }) => state.auth
 	);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const startLogin = async ({ email, password }: entryPeticion) => {
 		dispatch(onChecking());
 
 		try {
 			// Todo: peticion
+			const { data }: loginPeticion = await ecommerceApi.post('/auth/login', {
+				email,
+				password,
+			});
+
+			localStorage.setItem('token', data.token);
+
+			navigate('/ecommerce', {
+				replace: true,
+			});
+
 			dispatch(onLogin({ email, password }));
-			console.log(email, password);
+		} catch (error) {
+			dispatch(onLogout('Credenciales incorrectas'));
+			setTimeout(() => {
+				dispatch(clearErrorMessage());
+			}, 10);
+		}
+	};
+
+	const startLoginGoogle = async (response: any) => {
+		dispatch(onChecking());
+
+		var userObject: { email: string; name: string } = jwt_decode(
+			response.credential
+		);
+
+		const { email, name } = userObject;
+
+		try {
+			// Todo: peticion
+
+			const headers = {
+				xtoken: response.credential,
+			};
+
+			const { data }: loginPeticionRenewJwtGoogle = await ecommerceApi.get(
+				'/auth/renewJwtGoogle',
+				{ headers }
+			);
+
+			navigate('/ecommerce', {
+				replace: true,
+			});
+
+			localStorage.setItem('token', data.renewToken);
+
+			dispatch(onLogin({ email, name }));
 		} catch (error) {
 			dispatch(onLogout('Credenciales incorrectas'));
 			setTimeout(() => {
@@ -50,9 +99,23 @@ export const useAuthStore = () => {
 	};
 
 	const checkAuthToken = async () => {
+		const token = localStorage.getItem('token');
+
+		if (!token) return dispatch(onLogout(''));
+
 		try {
-			// Todo: peticion
-		} catch (error) {}
+			const headers = {
+				xtoken: localStorage.getItem('token'),
+			};
+
+			const { data } = await ecommerceApi.get('auth/renewJwt', { headers });
+			localStorage.setItem('token', data.token);
+			localStorage.setItem('token-init-plate', `${new Date().getTime()}`);
+			dispatch(onLogin({ name: data.name, uid: data.uid }));
+		} catch (error) {
+			localStorage.clear();
+			dispatch(onLogout(''));
+		}
 	};
 
 	const startLogout = async () => {
@@ -72,5 +135,6 @@ export const useAuthStore = () => {
 		startRegister,
 		checkAuthToken,
 		startLogout,
+		startLoginGoogle,
 	};
 };
