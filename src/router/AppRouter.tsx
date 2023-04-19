@@ -33,6 +33,7 @@ export const AppRouter = (): JSX.Element => {
 						) : (
 							<Route path='/auth' element={<Auth />} />
 						)}
+						<Route path='/ecommerce/homePage' element={<HomePage />} />
 						<Route path='/*' element={<Navigate to='/ecommerce/homePage' />} />
 					</>
 				)}

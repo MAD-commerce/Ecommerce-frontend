@@ -1,12 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 :root {
-
     /*========== Colors ==========*/
     --header-color: black;
     --header-text-color: white;
+
     --body-color: #eeeeee;
     --items-color: black;
+    
+    --primary-color: #BC96E6;
+    --secondary-color: #EBD1F2;
+    --text-color: black;
+    --title-color: #55286F;
+    --items-background-color: #D9D9D9;
     
     /*========== Font and typography ==========*/
     --body-font: "Poppins", sans-serif;
@@ -79,7 +85,7 @@ a {
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
-    max-width: 968px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -94,6 +100,25 @@ a {
 }
 .button {
     cursor: pointer;
+}
+.section {
+    margin-top: 5rem;
+}
+.submit-button {
+    width: 60%;
+    display: inline-block;
+    margin-top: 15px;
+    color: black;
+    border: none;
+    outline: none;
+    padding: 15px 20px;
+    background: var(--primary-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform .4s;
+}
+.submit-button:hover {
+    transform: scale(1.1);
 }
 
 /*=============== BREAKPOINTS ===============*/
@@ -119,7 +144,7 @@ a {
 }
 
 /* For small devices */
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 370px) {
   :root {
     --big-font-size: 2.25rem;
   }

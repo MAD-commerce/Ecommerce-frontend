@@ -1,7 +1,7 @@
 import { useForm } from '../../hooks';
 import { googleButton } from './googleButton';
 
-import logo from '../../assets/logo-png.png';
+import logo from '../../assets/logo.png';
 
 import '../pages/auth.css';
 

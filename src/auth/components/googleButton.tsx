@@ -56,7 +56,7 @@ export const googleButton = (): JSX.Element => {
 	};
 
 	return (
-		<div className='' id='sigInDiv'>
+		<div className='google__button' id='sigInDiv'>
 			coso
 		</div>
 	);
