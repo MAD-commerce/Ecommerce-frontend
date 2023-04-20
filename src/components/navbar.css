@@ -1,7 +1,30 @@
 .header {
     background-color: transparent;
+    position: fixed;
+    width: 100%;
+    transition: background-color 0.3s ease-in-out;
+}
+.header a {
+    background-image: linear-gradient( to right,  #fff, #fff 50%, black 50% ); 
+}
+
+.navbar-fixed {
+    background-color:var(--body-color); 
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2)
+}
+.navbar-fixed a {
+    background-image: linear-gradient( to right,  var(--title-color), var(--title-color) 50%, black 50% ); 
+}
+
+/* *Si navabar pertenece al login */
+.header-login {
+    background-color: transparent;
     width: 100%;
 }
+.header-login .nav {
+    color: white;
+}
+
 .wave-container {
     position: relative;
     width: 100%;
@@ -23,7 +46,7 @@ svg {
     color: var(--text-color);
 }
 .nav__logo {
-    font-weight: var(--font-medium);
+    font-weight: var(--font-semi-bold);
 }
 /* .nav__menu {
 

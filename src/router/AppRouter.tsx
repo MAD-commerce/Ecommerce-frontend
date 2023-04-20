@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { HomePage } from '../ecommerce/pages/HomePage';
+import { HomePage } from '../ecommerce/pages/homePage/HomePage';
 import { useAuthStore } from '../hooks/useAuthStore';
 import { Auth } from '../auth/pages/Auth';
 import { Loading } from '../components/Loading';

@@ -10,6 +10,7 @@
     
     --primary-color: #BC96E6;
     --secondary-color: #EBD1F2;
+    --prices-color: #A75BE2;
     --text-color: black;
     --title-color: #55286F;
     --items-background-color: #D9D9D9;
@@ -78,10 +79,43 @@ ul {
 }
 
 a {
-  text-decoration: none;
-  cursor: pointer;
+    text-decoration: none;
+    cursor: pointer;
 }
 
+/*=============== Animation A ===============*/
+a {
+  background-image: linear-gradient( to right, var(--secondary-color), var(--secondary-color) 50%, #fff 50% );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  background-clip: padding-box; 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+a::before {
+  content: "";
+  background: var(--title-color);
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+  background-position: 0;
+}
+
+a:hover::before {
+  width: 100%;
+}
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
@@ -102,20 +136,20 @@ a {
     cursor: pointer;
 }
 .section {
-    margin-top: 5rem;
+    padding: 8rem 0 2rem;
 }
 .submit-button {
-    width: 60%;
-    display: inline-block;
-    margin-top: 15px;
-    color: black;
-    border: none;
-    outline: none;
-    padding: 15px 20px;
     background: var(--primary-color);
-    cursor: pointer;
     border-radius: 5px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    outline: none;
+    padding: 10px 15px;
     transition: transform .4s;
+    width: 200px;
 }
 .submit-button:hover {
     transform: scale(1.1);
@@ -124,7 +158,8 @@ a {
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */
 /* Responsividad */
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
+  
   .container {
     margin-left: var(--mb-1-5);
     margin-right: var(--mb-1-5);
@@ -132,15 +167,30 @@ a {
 
 }
 
+@media screen and (max-width: 992px) {
+  
+  
+
+}
+
 /* For medium devices */
 @media screen and (max-width: 768px) {
+
   body {
     margin: 0 0 var(--header-height) 0;
+  }
+  .submit-button {
+    width: 100px;
   }
 
 }
 
 @media screen and (max-width: 576px) {
+
+  .section {
+    padding: 3rem 0 2rem;
+  }
+
 }
 
 /* For small devices */

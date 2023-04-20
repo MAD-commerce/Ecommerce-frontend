@@ -1,12 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
+import { useEffect, useState } from 'react';
 
-export const NavBar = (): JSX.Element => {
+export const NavBar = ({ type }: { type: string }): JSX.Element => {
 	const navigate = useNavigate();
 
+	const [isFixed, setIsFixed] = useState(false);
+
+	useEffect(() => {
+		function handleScroll() {
+			setIsFixed(window.pageYOffset > navbarOriginalPosition);
+		}
+		const navbarOriginalPosition = document.getElementById('navbar')!.offsetTop;
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
-		<div className='header'>
-			<div className='nav container'>
+		<header id='navbar' className={`${type} ${isFixed ? 'navbar-fixed' : ''}`}>
+			<nav className='nav container'>
 				<div className='nav__logo'>EcoClothes</div>
 				<div className='nav__menu'>
 					<ul className='nav__list'>
@@ -39,7 +53,7 @@ export const NavBar = (): JSX.Element => {
 						</li>
 					</ul>
 				</div>
-			</div>
-		</div>
+			</nav>
+		</header>
 	);
 };

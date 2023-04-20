@@ -1,14 +1,12 @@
-import { NavBar } from '../../components/NavBar';
-import { Home } from '../components/homePage/home/Home';
-import { Popular } from '../components/homePage/popular/Popular';
+import homeImg from '../../../assets/home-img.png';
 
 import './homePage.css';
 
-export const HomePage = () => {
+export const Home = () => {
 	return (
 		<>
 			<svg
-				viewBox='0 0 190 587'
+				viewBox='0 0 190 687'
 				fill='none'
 				xmlns='http://www.w3.org/2000/svg'
 				className='home_blob-container'
@@ -23,14 +21,18 @@ export const HomePage = () => {
 					<rect width='892' height='587' fill='white' />
 				</clipPath>
 			</svg>
-			<div className='App'>
-				<NavBar />
-
-				<main className='main'>
-					<Home />
-					<Popular />
-				</main>
-			</div>
+			<section className='section' id='home'>
+				<div className='home_container container grid'>
+					<div className='home_text'>
+						<b>Tendencias de moda</b>
+						<h1>EcoClothes</h1>
+						<button className='submit-button'>Comprar</button>
+					</div>
+					<div className='home_image'>
+						<img src={homeImg} alt='home image' />
+					</div>
+				</div>
+			</section>
 		</>
 	);
 };

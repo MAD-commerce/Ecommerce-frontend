@@ -12,13 +12,13 @@ export const Auth = () => {
 		<>
 			<div className='loginPage'>
 				<header className='header-auth'>
-					<NavBar />
+					<NavBar type='header-login' />
 
 					<div className='header__wave'>
 						<div className='header__wave-box'>
 							<svg
 								id='svg'
-								viewBox='0 0 1200 430'
+								viewBox='0 0 1200 330'
 								preserveAspectRatio='none'
 								xmlns='http://www.w3.org/2000/svg'
 								className='transition duration-200 ease-in-out delay-150 wave-container'
