@@ -50,6 +50,7 @@
     padding: 5PX;
     transition: border 0.3s ease-in-out;
     width: 243px;
+    cursor: pointer;
 }
 .product__box-background {
     background: #D9D9D9;
@@ -159,7 +160,9 @@
 
 @media screen and (max-width: 450px) {
 
-    
+    .product__box {
+        width: 170px;
+    }
 
 }
 

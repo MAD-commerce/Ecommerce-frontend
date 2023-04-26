@@ -1,15 +1,21 @@
-import bape from '../../../assets/Bape x Pubg.png';
+import { useNavigate } from 'react-router-dom';
+import bape from '../../../../assets/Bape x Pubg.png';
 
-interface Product {
-	name: string;
-	price: string;
-	priceBefore: string;
-	img: any;
-}
+const Product = ({
+	_id,
+	name,
+	price,
+	priceBefore,
+	img,
+}: ProductInterface): JSX.Element => {
+	const navigate = useNavigate();
 
-const Product = ({ name, price, priceBefore, img }: Product): JSX.Element => {
+	const enviar = () => {
+		navigate(`/ecommerce/product/${_id}`);
+	};
+
 	return (
-		<div className='product__box'>
+		<div className='product__box' onClick={() => enviar()}>
 			<div className='product__box-background flex-center'>
 				<img src={img} alt='Bape' />
 			</div>
@@ -29,7 +35,7 @@ const Product = ({ name, price, priceBefore, img }: Product): JSX.Element => {
 	);
 };
 
-export const Categories = (): JSX.Element => {
+export const Categories = ({ products }: { products: any }): JSX.Element => {
 	return (
 		<>
 			<section className='section' id='categories'>
@@ -41,36 +47,18 @@ export const Categories = (): JSX.Element => {
 						<button className='submit-button'>Hola</button>
 					</div>
 					<div className='products__container grid'>
-						<Product
-							name='Bape x Pubg'
-							price='$50'
-							priceBefore='$500'
-							img={bape}
-						/>
-						<Product
-							name='Bape x Pubg'
-							price='$50'
-							priceBefore='$500'
-							img={bape}
-						/>
-						<Product
-							name='Bape x Pubg'
-							price='$50'
-							priceBefore='$500'
-							img={bape}
-						/>
-						<Product
-							name='Bape x Pubg'
-							price='$50'
-							priceBefore='$500'
-							img={bape}
-						/>
-						<Product
-							name='Bape x Pubg'
-							price='$50'
-							priceBefore='$500'
-							img={bape}
-						/>
+						{JSON.parse(JSON.stringify(products)).map(
+							(product: ProductInterface) => (
+								<Product
+									key={product._id}
+									_id={product._id}
+									name={product.name}
+									price={product.price}
+									priceBefore={product.priceBefore}
+									img={bape}
+								/>
+							)
+						)}
 					</div>
 				</div>
 			</section>

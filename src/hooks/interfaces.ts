@@ -32,6 +32,25 @@ interface loginPeticionRenewJwtGoogle {
 	};
 }
 
+// Use Product Store
+interface ProductState {
+	status: string;
+	lastProduct: ProductInterface | null;
+	products: {} | null;
+	errorMessage: string | null;
+}
+interface ProductInterface {
+	_id?: string;
+	name?: string;
+	price?: string;
+	img?: any;
+	priceBefore?: string;
+	discount?: string;
+	description?: string;
+	colors?: {};
+	sizes?: {};
+}
+
 // UseForm
 
 type FormValidation = Record<string, [Function, string]>;

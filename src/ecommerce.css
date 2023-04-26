@@ -188,7 +188,15 @@ a:hover::before {
 @media screen and (max-width: 576px) {
 
   .section {
-    padding: 3rem 0 2rem;
+    padding: 5rem 0 2rem;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+
+  .section {
+    padding: 5rem 0 2rem;
   }
 
 }

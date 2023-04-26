@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useAuthStore } from '../../hooks/useAuthStore';
+import { useAuthStore } from '../../../hooks/useAuthStore';
 import useInterval from 'use-interval';
 
-import '../pages/auth.css';
+import '../auth.css';
 
 declare global {
 	interface Window {

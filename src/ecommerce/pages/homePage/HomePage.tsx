@@ -1,11 +1,22 @@
-import { NavBar } from '../../../components/NavBar';
-import { Home } from '../../components/homePage/Home';
-import { Popular } from '../../components/homePage/Popular';
-import { Categories } from '../../components/homePage/Categories';
+import { NavBar, Footer, Loading } from '../../../components';
 
-// import './homePage.css';
+import { useProductsStore } from '../../../hooks';
+import { Home, Categories } from './components';
+
+import { useEffect } from 'react';
 
 export const HomePage = () => {
+	const { getAllProducts, products, status } = useProductsStore();
+
+	useEffect(() => {
+		// TODO: Aplicar un useMemo para los productos
+		getAllProducts();
+	}, []);
+
+	if (status === 'not-ready') {
+		return <Loading />;
+	}
+
 	return (
 		<>
 			<div className='App'>
@@ -13,9 +24,11 @@ export const HomePage = () => {
 				<main className='main'>
 					<Home />
 					{/* <Popular /> */}
-					<Categories />
+
+					<Categories products={products} />
 				</main>
 			</div>
+			<Footer />
 		</>
 	);
 };

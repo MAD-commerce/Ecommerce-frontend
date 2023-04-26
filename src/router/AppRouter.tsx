@@ -3,7 +3,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { HomePage } from '../ecommerce/pages/homePage/HomePage';
 import { useAuthStore } from '../hooks/useAuthStore';
 import { Auth } from '../auth/pages/Auth';
-import { Loading } from '../components/Loading';
+import { Loading } from '../components/loading/Loading';
+import { ProductPage } from '../ecommerce/pages/productPage/ProductPage';
 
 export const AppRouter = (): JSX.Element => {
 	const { status, checkAuthToken } = useAuthStore();
@@ -25,6 +26,10 @@ export const AppRouter = (): JSX.Element => {
 				{status === 'authenticated' ? (
 					<>
 						<Route path='/*' element={<HomePage />} />
+						<Route
+							path='/ecommerce/product/:productId'
+							element={<ProductPage />}
+						/>
 					</>
 				) : (
 					<>
@@ -34,6 +39,10 @@ export const AppRouter = (): JSX.Element => {
 							<Route path='/auth' element={<Auth />} />
 						)}
 						<Route path='/ecommerce/homePage' element={<HomePage />} />
+						<Route
+							path='/ecommerce/product/:productId'
+							element={<ProductPage />}
+						/>
 						<Route path='/*' element={<Navigate to='/ecommerce/homePage' />} />
 					</>
 				)}

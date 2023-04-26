@@ -1,9 +1,9 @@
-import { useForm } from '../../hooks';
-import { useAuthStore } from '../../hooks/useAuthStore';
-import { googleButton } from './googleButton';
-import logo from '../../assets/logo.png';
+import { useAuthStore, useForm } from '../../../hooks';
+import { googleButton } from '.';
 
-import '../pages/auth.css';
+import logo from '../../../assets/logo.png';
+
+import '../auth.css';
 
 const loginFormFields = {
 	loginEmail: '',
@@ -30,7 +30,7 @@ export const Login = ({
 
 	return (
 		<>
-			<main className='main'>
+			<main className='main_auth'>
 				<div className='page grid'>
 					<div className='auth__box grid'>
 						<img className='auth__logo' src={logo} alt='logo' />

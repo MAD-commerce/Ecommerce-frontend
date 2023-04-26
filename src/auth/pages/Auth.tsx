@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Register } from '../components/Register';
-import { Login } from '../components/Login';
-import { NavBar } from '../../components/NavBar';
+import { NavBar } from '../../components';
+import { Register, Login } from './components';
 
 import './auth.css';
 
@@ -17,7 +16,6 @@ export const Auth = () => {
 					<div className='header__wave'>
 						<div className='header__wave-box'>
 							<svg
-								id='svg'
 								viewBox='0 0 1200 330'
 								preserveAspectRatio='none'
 								xmlns='http://www.w3.org/2000/svg'

@@ -23,7 +23,6 @@ export const useAuthStore = () => {
 		dispatch(onChecking());
 
 		try {
-			// Todo: peticion
 			const { data }: loginPeticion = await ecommerceApi.post('/auth/login', {
 				email,
 				password,
@@ -31,11 +30,9 @@ export const useAuthStore = () => {
 
 			localStorage.setItem('token', data.token);
 
-			navigate('/ecommerce', {
-				replace: true,
-			});
+			const { uid, name } = data;
 
-			dispatch(onLogin({ email, password }));
+			dispatch(onLogin({ uid, email, name }));
 		} catch (error) {
 			dispatch(onLogout('Credenciales incorrectas'));
 			setTimeout(() => {
@@ -54,8 +51,6 @@ export const useAuthStore = () => {
 		const { email, name } = userObject;
 
 		try {
-			// Todo: peticion
-
 			const headers = {
 				xtoken: response.credential,
 			};
@@ -80,6 +75,7 @@ export const useAuthStore = () => {
 		}
 	};
 
+	// Todo: Realizar
 	const startRegister = async ({
 		name,
 		email,
@@ -88,7 +84,6 @@ export const useAuthStore = () => {
 		dispatch(onChecking());
 
 		try {
-			// Todo: peticion
 			console.log(name, email, password);
 		} catch (error) {
 			dispatch(onLogout(error.response.data?.msg || '---'));
@@ -118,9 +113,9 @@ export const useAuthStore = () => {
 		}
 	};
 
+	// Todo: Realizar
 	const startLogout = async () => {
 		try {
-			// Todo: peticion
 		} catch (error) {}
 	};
 

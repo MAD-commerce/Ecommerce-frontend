@@ -1,6 +1,6 @@
-import homeImg from '../../../assets/home-img.png';
+import homeImg from '../../../../assets/home-img.png';
 
-import './homePage.css';
+import '../homePage.css';
 
 export const Home = () => {
 	return (
