@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import bape from '../../../../assets/Bape x Pubg.png';
+import { useEffect, useState } from 'react';
 
 const Product = ({
 	_id,
 	name,
 	price,
 	priceBefore,
-	img,
+	images,
 }: ProductInterface): JSX.Element => {
 	const navigate = useNavigate();
 
@@ -14,10 +15,16 @@ const Product = ({
 		navigate(`/ecommerce/product/${_id}`);
 	};
 
+	// var base64Icon = `data:image/png;base64,${image}`;
+
 	return (
 		<div className='product__box' onClick={() => enviar()}>
 			<div className='product__box-background flex-center'>
-				<img src={img} alt='Bape' />
+				<img
+					src={`data:image/png;base64,${images[0]}`}
+					alt='Bape'
+					className='product__box-image'
+				/>
 			</div>
 			<div className='product__box-information'>
 				<div className='product__information'>
@@ -36,18 +43,37 @@ const Product = ({
 };
 
 export const Categories = ({ products }: { products: any }): JSX.Element => {
+	const [filter, setFilter] = useState('all');
+
+	const filtrarProductos = () => {
+		return filter === 'all'
+			? products
+			: products.filter((product: ProductInterface) => product.type === filter);
+	};
+
 	return (
 		<>
 			<section className='section' id='categories'>
 				<div className='categories_container container grid'>
 					<div className='categories__buttons'>
-						<button className='submit-button'>Hola</button>
-						<button className='submit-button'>Hola</button>
-						<button className='submit-button'>Hola</button>
-						<button className='submit-button'>Hola</button>
+						<button className='submit-button' onClick={() => setFilter('all')}>
+							All
+						</button>
+						<button
+							className='submit-button'
+							onClick={() => setFilter('superior')}
+						>
+							Superior
+						</button>
+						<button
+							className='submit-button'
+							onClick={() => setFilter('inferior')}
+						>
+							Inferior
+						</button>
 					</div>
 					<div className='products__container grid'>
-						{JSON.parse(JSON.stringify(products)).map(
+						{JSON.parse(JSON.stringify(filtrarProductos())).map(
 							(product: ProductInterface) => (
 								<Product
 									key={product._id}
@@ -55,7 +81,8 @@ export const Categories = ({ products }: { products: any }): JSX.Element => {
 									name={product.name}
 									price={product.price}
 									priceBefore={product.priceBefore}
-									img={bape}
+									images={product.images}
+									type={product.type}
 								/>
 							)
 						)}

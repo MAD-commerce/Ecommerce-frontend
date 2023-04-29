@@ -2,10 +2,10 @@ interface ProductInterface {
 	_id?: string;
 	name?: string;
 	price?: string;
-	img?: any;
-	priceBefore?: string;
+	images?: any;
 	discount?: string;
 	description?: string;
+	type: string;
 	colors?: {};
 	sizes?: {};
 }

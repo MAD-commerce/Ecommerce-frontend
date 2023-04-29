@@ -1,17 +1,29 @@
-import { Loading, NavBar } from '../../../components';
-import { Footer } from '../../../components/footer/Footer';
+import { Loading, NavBar, Footer } from '../../../components';
 import bape from '../../../assets/Bape x Pubg2.png';
 import bape2 from '../../../assets/Bape x Pubg.png';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useProductsStore } from '../../../hooks/useProductsStore';
 
 import './product.css';
+
+const PresentationImage = ({ image }: { image: string }) => {
+	return (
+		<div className='product_presentation-box flex-center'>
+			<img
+				src={`data:image/png;base64,${image}`}
+				alt=''
+				className='presentation-img'
+			/>
+		</div>
+	);
+};
 
 export const ProductPage = () => {
 	const { getProductById, lastProduct, status } = useProductsStore();
 
 	const { productId } = useParams();
+	const [loading, setLoading] = useState(true);
 
 	// Todo: *Arreglar esta peticion que se crea todo el rato
 	useEffect(() => {
@@ -19,9 +31,10 @@ export const ProductPage = () => {
 			productId,
 		});
 		window.scrollTo(0, 0);
+		setLoading(false);
 	}, []);
 
-	if (status === 'not-ready') {
+	if (loading || status == 'not-ready') {
 		return <Loading />;
 	}
 
@@ -46,26 +59,25 @@ export const ProductPage = () => {
 											fill='#BC96E6'
 										/>
 									</svg>
-									<div className='information__img-box'>
-										<img src={bape} alt='' className='information__img' />
+									<div className='information__img-box flex-center'>
+										<img
+											src={`data:image/png;base64,${lastProduct?.images[0]}`}
+											alt=''
+											className='information__img'
+										/>
 									</div>
 								</div>
 								<div className='product_information-description'>
 									<h1 className='product-name'>{lastProduct?.name}</h1>
 									<hr />
 									<div className='product-prices'>
-										<p>${lastProduct?.price}</p>
-										<p>$000</p>
-										<p>00% Off</p>
+										<p>{lastProduct?.price}</p>
+										{/* TODO: Arreglar los precios */}
+										<p>*Descuento*</p>
+										<p>{`${lastProduct?.discount}% Off`}</p>
 									</div>
 									<hr />
-									<p>
-										Consectetur culpa nulla incididunt nisi fugiat est amet
-										pariatur non quis Lorem do. Cillum nostrud proident
-										incididunt esse ut sunt quis pariatur fugiat consectetur
-										deserunt commodo cupidatat. Ad reprehenderit sit quis nisi
-										in dolore adipisicing do commodo irure minim labore.
-									</p>
+									<p>{lastProduct?.description}</p>
 									<hr />
 									<p>Color: </p>
 									<p>Size: </p>
@@ -73,15 +85,9 @@ export const ProductPage = () => {
 							</div>
 
 							<div className='product_presentation'>
-								<div className='product_presentation-box flex-center'>
-									<img src={bape2} alt='' className='presentation-img' />
-								</div>
-								<div className='product_presentation-box flex-center'>
-									<img src={bape2} alt='' className='presentation-img' />
-								</div>
-								<div className='product_presentation-box flex-center'>
-									<img src={bape2} alt='' className='presentation-img' />
-								</div>
+								{lastProduct?.images.map((image: string) => (
+									<PresentationImage image={image} />
+								))}
 							</div>
 						</div>
 					</section>

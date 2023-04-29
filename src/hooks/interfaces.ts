@@ -43,7 +43,7 @@ interface ProductInterface {
 	_id?: string;
 	name?: string;
 	price?: string;
-	img?: any;
+	images?: any;
 	priceBefore?: string;
 	discount?: string;
 	description?: string;

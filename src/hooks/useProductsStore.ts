@@ -58,9 +58,7 @@ export const useProductsStore = () => {
 				headers,
 			});
 
-			const { _id, name, price, description }: ProductInterface = data.product;
-
-			dispatch(onGetProductById({ _id, name, price, description }));
+			dispatch(onGetProductById(data.product));
 		} catch (error) {
 			setTimeout(() => {
 				dispatch(clearErrorMessage());
