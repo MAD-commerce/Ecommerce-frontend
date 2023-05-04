@@ -1,0 +1,133 @@
+
+.product_information {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.product_information-img {
+    height: 450px;
+    width: 500px;
+}
+.information__img {
+    width: 70%;
+}
+.blob {
+    height: 1447px;
+    width: 753px;
+    z-index: -1;
+}
+
+.product_information-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.product-name {
+    color: var(--title-color);
+}
+.product-prices {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.product_presentation {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+.product_presentation-box {
+    width: 202px;
+    height: 202px;
+    background: #E9E9E9;
+    border-radius: 30px;
+    margin: 10px;
+}
+.presentation-img {
+    width: 80%;
+}
+
+
+/*=============== BREAKPOINTS ===============*/
+
+@media screen and (max-width: 992px) {
+
+    .product_information-img {
+        height: 389px;
+        width: 339px;
+    }
+
+    .blob {
+        height: 1490px;
+        width: 689px;
+    }
+  
+}
+
+
+@media screen and (max-width: 768px) {
+    
+    .product_information {
+        grid-template-columns: none;
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .product_information-img {
+        height: auto;
+        width: auto;
+    }
+    .blob {
+        height: 1476px;
+        width: 604px;
+    }
+    .information__img {
+        width: 300px;
+    }
+    
+}
+
+@media screen and (max-width: 576px) {
+   
+    .information__img-box {
+        padding: 20px 30px;
+        background: var(--primary-color);
+        border-radius: 30px;
+        margin: 10px;
+    }
+    .blob {
+        display: none;
+    }
+    .information__img {
+        width: 238px;
+        margin-top: 10px;
+    }
+    .product_presentation-box {
+        width: 177px;
+        height: 176px;
+    }
+    
+}
+
+@media screen and (max-width: 450px) {
+
+    .information__img {
+        width: 175px;
+    }
+    .product_presentation-box {
+        width: 125px;
+        height: 148px;
+    }
+    
+
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {
+    
+    .presentation-img {
+        width: 100px;
+    }
+    .product_information-description hr {
+        margin: 10px 0;
+    }
+
+}

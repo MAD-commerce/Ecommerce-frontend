@@ -16,6 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "composite": true,
+    "useUnknownInCatchVariables": false,
   },
   "rules": {
     "@typescript-eslint/dot-notation": "error"
