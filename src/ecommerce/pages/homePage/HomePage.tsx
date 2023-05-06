@@ -9,11 +9,11 @@ export const HomePage = () => {
 	const { getAllProducts, products, status } = useProductsStore();
 
 	useEffect(() => {
-		// TODO: Aplicar un useMemo para los productos
 		getAllProducts();
 	}, []);
 
-	if (status === 'not-ready') {
+	// TODO: Verificar esto si es mejor con estatus o con undefined
+	if (products.length === undefined) {
 		return <Loading />;
 	}
 

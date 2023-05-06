@@ -2,13 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface ProductsState {
 	status: string;
-	lastProduct: ProductInterface;
+	cart: {};
+	lastProduct: {};
 	products: {};
 	errorMessage: undefined | string;
 }
 
 const initialState: ProductsState = {
 	status: 'not-ready',
+	cart: {},
 	lastProduct: {},
 	products: {},
 	errorMessage: undefined,
@@ -46,6 +48,14 @@ export const ProductsSlice = createSlice({
 			state.lastProduct = payload;
 			state.errorMessage = undefined;
 		},
+		onGetCart: (
+			state: ProductsState,
+			{ payload }: { payload: ProductInterface[] }
+		) => {
+			state.status = 'ready';
+			state.cart = payload;
+			state.errorMessage = undefined;
+		},
 		clearErrorMessage: (state: ProductsState) => {
 			state.errorMessage = undefined;
 		},
@@ -58,6 +68,7 @@ export const {
 	onGetAllProducts,
 	onGetProductById,
 	clearErrorMessage,
+	onGetCart,
 } = ProductsSlice.actions;
 
 export const productSliceReducer = ProductsSlice.reducer;

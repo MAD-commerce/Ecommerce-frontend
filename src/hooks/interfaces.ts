@@ -35,8 +35,9 @@ interface loginPeticionRenewJwtGoogle {
 // Use Product Store
 interface ProductState {
 	status: string;
+	cart: [];
 	lastProduct: ProductInterface | null;
-	products: {} | null;
+	products: [];
 	errorMessage: string | null;
 }
 interface ProductInterface {
@@ -44,11 +45,15 @@ interface ProductInterface {
 	name?: string;
 	price?: string;
 	images?: any;
-	priceBefore?: string;
 	discount?: string;
 	description?: string;
 	colors?: {};
 	sizes?: {};
+}
+
+interface Cart {
+	_id?: string;
+	quantity?: string;
 }
 
 // UseForm

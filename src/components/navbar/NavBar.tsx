@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 import { useEffect, useState } from 'react';
+import { useAuthStore } from '../../hooks';
 
 export const NavBar = ({ type }: { type: string }): JSX.Element => {
 	const navigate = useNavigate();
+	const { status, startLogout } = useAuthStore();
 
 	const [isFixed, setIsFixed] = useState(false);
 
@@ -32,17 +34,28 @@ export const NavBar = ({ type }: { type: string }): JSX.Element => {
 								Home
 							</a>
 						</li>
-						<li className='nav__item'>
-							<a onClick={() => navigate('/auth')} className='nav__link'>
-								Login
-							</a>
-						</li>
+						{status !== 'authenticated' ? (
+							<li className='nav__item'>
+								<a onClick={() => navigate('/auth')} className='nav__link'>
+									Login
+								</a>
+							</li>
+						) : (
+							<li className='nav__item'>
+								<a onClick={() => startLogout()} className='nav__link'>
+									Logout
+								</a>
+							</li>
+						)}
 					</ul>
 				</div>
 				<div className='search'>
 					<ul className='nav__list'>
 						<li className='nav__item'>
-							<a href='' className='nav__link'>
+							<a
+								onClick={() => navigate('/ecommerce/cart')}
+								className='nav__link'
+							>
 								<i className='bx bxs-cart nav__icon'></i>
 							</a>
 						</li>

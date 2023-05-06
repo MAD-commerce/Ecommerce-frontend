@@ -28,6 +28,16 @@
     display: flex;
     justify-content: space-evenly;
 }
+.product-price {
+    color: var(--title-color);
+}
+.product-priceBefore {
+    text-decoration-line: line-through;
+    color: #5F5F5F;
+}
+.product-discount {
+    color: var(--title-color);
+}
 
 .product_presentation {
     display: flex;
