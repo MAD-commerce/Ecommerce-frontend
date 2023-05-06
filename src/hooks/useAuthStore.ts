@@ -113,10 +113,9 @@ export const useAuthStore = () => {
 		}
 	};
 
-	// Todo: Realizar
-	const startLogout = async () => {
-		try {
-		} catch (error) {}
+	const startLogout = () => {
+		localStorage.clear();
+		dispatch(onLogout(''));
 	};
 
 	return {

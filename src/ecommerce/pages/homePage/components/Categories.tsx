@@ -1,24 +1,30 @@
 import { useNavigate } from 'react-router-dom';
-import bape from '../../../../assets/Bape x Pubg.png';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useProductsStore } from '../../../../hooks';
+import Swal from 'sweetalert2';
 
 const Product = ({
-	_id,
+	_id = '',
 	name,
 	price,
-	priceBefore,
 	images,
 }: ProductInterface): JSX.Element => {
+	const { updateCart } = useProductsStore();
 	const navigate = useNavigate();
 
-	const enviar = () => {
+	const seeProduct = () => {
 		navigate(`/ecommerce/product/${_id}`);
+	};
+
+	const sendProduct = () => {
+		updateCart({ _id });
+		Swal.fire('Buen trabajo', 'Producto agregado correctamente!', 'success');
 	};
 
 	// var base64Icon = `data:image/png;base64,${image}`;
 
 	return (
-		<div className='product__box' onClick={() => enviar()}>
+		<div className='product__box'>
 			<div className='product__box-background flex-center'>
 				<img
 					src={`data:image/png;base64,${images[0]}`}
@@ -31,11 +37,21 @@ const Product = ({
 					<p className='product__information-name'>{name}</p>
 					<div className='prices'>
 						<p className='product__information-price'>{price}</p>
-						<p className='product__information-priceBefore'>{priceBefore}</p>
 					</div>
 				</div>
-				<div className='product__button-cart flex-center' onClick={() => {}}>
-					<i className='bx bx-cart-add'></i>
+				<div className='flex-center'>
+					<div
+						className='product__button-cart flex-center'
+						onClick={() => seeProduct()}
+					>
+						<i className='bx bx-fullscreen'></i>
+					</div>
+					<div
+						className='product__button-cart flex-center'
+						onClick={() => sendProduct()}
+					>
+						<i className='bx bx-cart-add'></i>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -80,7 +96,6 @@ export const Categories = ({ products }: { products: any }): JSX.Element => {
 									_id={product._id}
 									name={product.name}
 									price={product.price}
-									priceBefore={product.priceBefore}
 									images={product.images}
 									type={product.type}
 								/>

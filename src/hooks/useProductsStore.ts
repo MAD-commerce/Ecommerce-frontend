@@ -7,10 +7,11 @@ import {
 	clearErrorMessage,
 	onGetAllProducts,
 	onGetProductById,
+	onGetCart,
 } from '../store/Products/productsSlice';
 
 export const useProductsStore = () => {
-	const { status, products, lastProduct, errorMessage } = useSelector(
+	const { status, products, cart, lastProduct, errorMessage } = useSelector(
 		(state: { products: ProductState }) => state.products
 	);
 
@@ -50,7 +51,6 @@ export const useProductsStore = () => {
 		dispatch(onChecking());
 		try {
 			const headers = {
-				// xtoken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDE4ZDMxOTRlZDA0MDllYjJiNWJkZWUiLCJuYW1lIjoiSm9hbiIsImlhdCI6MTY4MjIxNDEwMSwiZXhwIjoxNjgyMjIxMzAxfQ.d_HHsFN0W4-y9p9V8uTSNx6L1H0BVx3jPxtUpbspJvs',
 				productId: productId,
 			};
 
@@ -66,9 +66,61 @@ export const useProductsStore = () => {
 		}
 	};
 
+	const updateCart = async ({ _id }: { _id: string | undefined }) => {
+		dispatch(onChecking());
+		try {
+			const { data } = await ecommerceApi.post('products/updateCart', {
+				product: {
+					_id,
+				},
+			});
+
+			dispatch(onGetCart(data.cart));
+		} catch (error) {
+			setTimeout(() => {
+				dispatch(clearErrorMessage());
+			}, 10);
+		}
+	};
+
+	const getCartById = async () => {
+		dispatch(onChecking());
+		try {
+			const { data } = await ecommerceApi.get('products/getCartById');
+
+			dispatch(onGetCart(data.cart));
+		} catch (error) {
+			setTimeout(() => {
+				dispatch(clearErrorMessage());
+			}, 10);
+		}
+	};
+
+	const deleteProductCardById = async ({
+		productId,
+	}: {
+		productId: string;
+	}) => {
+		dispatch(onChecking());
+		let nuevoArray: ProductInterface[];
+
+		try {
+			await ecommerceApi.post(`products/deleteProductCart`, {
+				_id: productId,
+			});
+
+			nuevoArray = cart.filter(
+				(product: ProductInterface) => product._id !== productId
+			);
+
+			dispatch(onGetCart(nuevoArray));
+		} catch (error) {}
+	};
+
 	return {
 		// Propiedades
 		status,
+		cart,
 		lastProduct,
 		products,
 		errorMessage,
@@ -77,5 +129,8 @@ export const useProductsStore = () => {
 		CreateProduct,
 		getAllProducts,
 		getProductById,
+		getCartById,
+		updateCart,
+		deleteProductCardById,
 	};
 };

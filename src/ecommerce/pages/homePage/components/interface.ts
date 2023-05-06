@@ -12,6 +12,7 @@ interface ProductInterface {
 
 interface ProductList {
 	status: string;
+	cart: {};
 	products: ProductInterface[];
 	errorMessage: string | null;
 	CreateProduct: () => Promise<void>;

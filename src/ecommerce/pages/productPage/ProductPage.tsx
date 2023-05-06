@@ -1,11 +1,10 @@
 import { Loading, NavBar, Footer } from '../../../components';
-import bape from '../../../assets/Bape x Pubg2.png';
-import bape2 from '../../../assets/Bape x Pubg.png';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useProductsStore } from '../../../hooks/useProductsStore';
 
 import './product.css';
+import Swal from 'sweetalert2';
 
 const PresentationImage = ({ image }: { image: string }) => {
 	return (
@@ -20,10 +19,11 @@ const PresentationImage = ({ image }: { image: string }) => {
 };
 
 export const ProductPage = () => {
-	const { getProductById, lastProduct, status } = useProductsStore();
-
+	const { getProductById, lastProduct, status, updateCart } =
+		useProductsStore();
 	const { productId } = useParams();
 	const [loading, setLoading] = useState(true);
+	let contador = 0;
 
 	// Todo: *Arreglar esta peticion que se crea todo el rato
 	useEffect(() => {
@@ -37,6 +37,20 @@ export const ProductPage = () => {
 	if (loading || status == 'not-ready') {
 		return <Loading />;
 	}
+
+	const calculateDiscount = (price = '', discount = ''): string => {
+		if (price && discount === '') return 'error';
+
+		return (
+			parseInt(price) -
+			parseInt(price) * (parseInt(discount) / 100)
+		).toFixed(2);
+	};
+
+	const sendProduct = () => {
+		updateCart({ _id: productId });
+		Swal.fire('Buen trabajo', 'Producto agregado correctamente!', 'success');
+	};
 
 	return (
 		<>
@@ -71,22 +85,31 @@ export const ProductPage = () => {
 									<h1 className='product-name'>{lastProduct?.name}</h1>
 									<hr />
 									<div className='product-prices'>
-										<p>{lastProduct?.price}</p>
+										<p className='product-price'>{`$ ${calculateDiscount(
+											lastProduct?.price,
+											lastProduct?.discount
+										)}`}</p>
 										{/* TODO: Arreglar los precios */}
-										<p>*Descuento*</p>
-										<p>{`${lastProduct?.discount}% Off`}</p>
+										<p className='product-priceBefore'>{`$ ${lastProduct?.price}`}</p>
+										<p className='product-discount'>{`${lastProduct?.discount}% Off`}</p>
 									</div>
 									<hr />
 									<p>{lastProduct?.description}</p>
 									<hr />
 									<p>Color: </p>
 									<p>Size: </p>
+									<button
+										className='submit-button'
+										onClick={() => sendProduct()}
+									>
+										Agregar al carrito
+									</button>
 								</div>
 							</div>
 
 							<div className='product_presentation'>
 								{lastProduct?.images.map((image: string) => (
-									<PresentationImage image={image} />
+									<PresentationImage image={image} key={contador++} />
 								))}
 							</div>
 						</div>
