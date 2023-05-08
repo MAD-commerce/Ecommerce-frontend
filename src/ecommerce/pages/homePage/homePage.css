@@ -28,6 +28,19 @@
     color: var(--title-color);
 }
 
+/*=============== Images Section ===============*/
+
+.image_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.image__center {
+    height: 300px;
+}
+.image__side {
+    height: 200px;
+}
 
 /*=============== Categories Section ===============*/
 
@@ -137,6 +150,13 @@
     .home_blob-container {
         height: 680px;
     }
+
+    .image__center {
+        height: 250px;
+    }
+    .image__side {
+        height: 150px;
+    }
     
 }
 
@@ -157,6 +177,13 @@
     }
     .product__box-background {
         height: 172px;
+    }
+
+    .image__center {
+        height: 200px;
+    }
+    .image__side {
+        height: 100px;
     }
     
 }

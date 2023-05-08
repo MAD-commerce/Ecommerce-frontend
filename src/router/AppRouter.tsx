@@ -7,6 +7,7 @@ import { Loading } from '../components/loading/Loading';
 import { ProductPage } from '../ecommerce/pages/productPage/ProductPage';
 import { CartPage } from '../ecommerce/pages/cart/CartPage';
 import { useProductsStore } from '../hooks';
+import { SearchPage } from '../ecommerce/pages/Search/SearchPage';
 
 export const AppRouter = (): JSX.Element => {
 	const { status, checkAuthToken } = useAuthStore();
@@ -33,6 +34,7 @@ export const AppRouter = (): JSX.Element => {
 							path='/ecommerce/product/:productId'
 							element={<ProductPage />}
 						/>
+						<Route path='/ecommerce/search' element={<SearchPage />} />
 						<Route path='/ecommerce/cart' element={<CartPage />} />
 					</>
 				) : (
@@ -49,13 +51,16 @@ export const AppRouter = (): JSX.Element => {
 						/>
 
 						{statusProduct === 'ready' ? (
-							<Route path='/ecommerce/cart' element={<Auth />} />
+							<>
+								<Route path='/ecommerce/cart' element={<Auth />} />
+							</>
 						) : (
 							<Route
 								path='/*'
 								element={<Navigate to='/ecommerce/homePage' />}
 							/>
 						)}
+						<Route path='/ecommerce/search' element={<SearchPage />} />
 						<Route path='/*' element={<Navigate to='/ecommerce/homePage' />} />
 					</>
 				)}

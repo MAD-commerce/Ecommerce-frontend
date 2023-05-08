@@ -1,7 +1,7 @@
 import { NavBar, Footer, Loading } from '../../../components';
 
 import { useProductsStore } from '../../../hooks';
-import { Home, Categories } from './components';
+import { Home, Categories, Images, Popular } from './components';
 
 import { useEffect } from 'react';
 
@@ -23,9 +23,10 @@ export const HomePage = () => {
 				<NavBar type='header' />
 				<main className='main'>
 					<Home />
-					{/* <Popular /> */}
+					<Images />
 
 					<Categories products={products} />
+					<Popular />
 				</main>
 			</div>
 			<Footer />
