@@ -7,10 +7,11 @@ import { Loading } from '../components/loading/Loading';
 import { ProductPage } from '../ecommerce/pages/productPage/ProductPage';
 import { CartPage } from '../ecommerce/pages/cart/CartPage';
 import { useProductsStore } from '../hooks';
-import { SearchPage } from '../ecommerce/pages/Search/SearchPage';
+import { SearchPage } from '../ecommerce/pages/SearchPage/SearchPage';
+import { CreateNewProduct } from '../ecommerce/pages/createProduct/CreateNewProduct';
 
 export const AppRouter = (): JSX.Element => {
-	const { status, checkAuthToken } = useAuthStore();
+	const { status, checkAuthToken, user } = useAuthStore();
 	const { status: statusProduct } = useProductsStore();
 
 	// todo: verificar el token
@@ -36,6 +37,18 @@ export const AppRouter = (): JSX.Element => {
 						/>
 						<Route path='/ecommerce/search' element={<SearchPage />} />
 						<Route path='/ecommerce/cart' element={<CartPage />} />
+
+						{user?.role === 'admin' ? (
+							<Route
+								path='/ecommerce/createProduct'
+								element={<CreateNewProduct />}
+							/>
+						) : (
+							<Route
+								path='/ecommerce/createProduct'
+								element={<Navigate to='/ecommerce/homePage' />}
+							/>
+						)}
 					</>
 				) : (
 					<>

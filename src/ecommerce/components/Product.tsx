@@ -2,12 +2,14 @@ import React from 'react';
 import { useAuthStore, useProductsStore } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { calculateDiscount } from '../../helpers/getDiscount';
 
 export const Product = ({
 	_id = '',
 	name,
 	price,
 	images,
+	discount,
 }: ProductInterface): JSX.Element => {
 	const { updateCart } = useProductsStore();
 	const { status } = useAuthStore();
@@ -24,6 +26,7 @@ export const Product = ({
 
 	return (
 		<div className='product__box'>
+			<div className='product__box-discount flex-center'>{`${discount}%`}</div>
 			<div className='product__box-background flex-center'>
 				<img
 					src={`data:image/png;base64,${images[0]}`}
@@ -35,7 +38,9 @@ export const Product = ({
 				<div className='product__information'>
 					<p className='product__information-name'>{name}</p>
 					<div className='prices'>
-						<p className='product__information-price'>{price}</p>
+						<p className='product__information-price'>
+							{`$ ${calculateDiscount(price, discount)}`}
+						</p>
 					</div>
 				</div>
 				<div className='flex-center'>

@@ -30,9 +30,7 @@ export const useAuthStore = () => {
 
 			localStorage.setItem('token', data.token);
 
-			const { uid, name } = data;
-
-			dispatch(onLogin({ uid, email, name }));
+			dispatch(onLogin({ ...data }));
 		} catch (error) {
 			dispatch(onLogout('Credenciales incorrectas'));
 			setTimeout(() => {
@@ -44,7 +42,7 @@ export const useAuthStore = () => {
 	const startLoginGoogle = async (response: any) => {
 		dispatch(onChecking());
 
-		var userObject: { email: string; name: string } = jwt_decode(
+		var userObject: { email: string; name: string; role: string } = jwt_decode(
 			response.credential
 		);
 
@@ -106,7 +104,7 @@ export const useAuthStore = () => {
 			const { data } = await ecommerceApi.get('auth/renewJwt', { headers });
 			localStorage.setItem('token', data.token);
 			localStorage.setItem('token-init-plate', `${new Date().getTime()}`);
-			dispatch(onLogin({ name: data.name, uid: data.uid }));
+			dispatch(onLogin({ name: data.name, uid: data.uid, role: data.role }));
 		} catch (error) {
 			localStorage.clear();
 			dispatch(onLogout(''));

@@ -18,7 +18,7 @@ export const Categories = ({ products }: { products: any }): JSX.Element => {
 				<div className='categories_container container grid'>
 					<div className='categories__buttons'>
 						<button className='submit-button' onClick={() => setFilter('all')}>
-							All
+							Todos
 						</button>
 						<button
 							className='submit-button'
@@ -43,6 +43,7 @@ export const Categories = ({ products }: { products: any }): JSX.Element => {
 									price={product.price}
 									images={product.images}
 									type={product.type}
+									discount={product.discount}
 								/>
 							)
 						)}

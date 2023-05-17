@@ -1,0 +1,87 @@
+.createProduct_container {
+    grid-template-columns: repeat(2, 1fr);
+}
+.product__images {
+    width: 100%;
+    height: 100%;
+}
+.from-input {
+    display: flex;
+}
+.inputEntry {
+    outline: none;
+}
+.textAreaEntry {
+    background: none;
+    border-radius: 0.75rem;
+    border: 1px solid black;
+    margin-bottom: 0.5rem;
+    min-height: 100px;
+    max-height: 200px; 
+    outline: none;
+    padding: 1rem;
+    resize: vertical;
+    width: 100%;
+}  
+.image-container {
+    display: grid;
+    grid-template-areas: 
+    "bigImage"
+    "normalImage";
+}
+.image-container img{
+    height: 100%;
+}
+.large-image {
+    grid-area: bigImage;
+    position: relative;
+    height: 350px;
+}
+.small__images-box {
+    display: flex;
+    justify-content: space-around;
+}
+.small-image {
+    grid-area: normalImage;
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+.remove-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    padding: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+  
+@media screen and (max-width: 992px) {
+  
+    .large-image {
+        height: 350px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .createProduct_container {
+        grid-template-columns: auto;
+    }
+   
+    .product__images {
+        grid-row-start: 1;
+    }
+    
+}
+
+@media screen and (max-width: 450px) {
+
+    .large-image {
+        height: 250px;
+    }
+
+}

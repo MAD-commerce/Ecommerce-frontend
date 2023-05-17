@@ -9,6 +9,7 @@ import {
 	onGetProductById,
 	onGetCart,
 } from '../store/Products/productsSlice';
+import { createFormData } from '../helpers/createFormData';
 
 export const useProductsStore = () => {
 	const { status, products, cart, lastProduct, errorMessage } = useSelector(
@@ -18,10 +19,13 @@ export const useProductsStore = () => {
 	const dispatch = useDispatch();
 
 	// Todo: Realizar
-	const CreateProduct = async () => {
-		try {
-			const { ...coso } = await ecommerceApi.post('products/new', {});
+	const createProduct = async ({ ...product }: ProductInterface) => {
+		const formData = createFormData(product);
 
+		try {
+			const { ...data } = await ecommerceApi.post('products/new', formData);
+
+			console.log(data);
 			// dispatch();
 		} catch (error) {
 			setTimeout(() => {
@@ -126,7 +130,7 @@ export const useProductsStore = () => {
 		errorMessage,
 
 		// metodos
-		CreateProduct,
+		createProduct,
 		getAllProducts,
 		getProductById,
 		getCartById,

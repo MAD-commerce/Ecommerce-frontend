@@ -75,6 +75,16 @@ input {
   padding: 3px 0 10px 30px;
 }
 
+select {
+  font-family: inherit;
+  display: inline-block;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 3px 0 10px 30px;
+}
+
 body,
 button,
 input,

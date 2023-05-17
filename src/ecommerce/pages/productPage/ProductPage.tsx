@@ -5,6 +5,7 @@ import { useProductsStore } from '../../../hooks/useProductsStore';
 
 import './product.css';
 import Swal from 'sweetalert2';
+import { calculateDiscount } from '../../../helpers/getDiscount';
 
 const PresentationImage = ({ image }: { image: string }) => {
 	return (
@@ -37,15 +38,6 @@ export const ProductPage = () => {
 	if (loading || status == 'not-ready') {
 		return <Loading />;
 	}
-
-	const calculateDiscount = (price = '', discount = ''): string => {
-		if (price && discount === '') return 'error';
-
-		return (
-			parseInt(price) -
-			parseInt(price) * (parseInt(discount) / 100)
-		).toFixed(2);
-	};
 
 	const sendProduct = () => {
 		updateCart({ _id: productId });

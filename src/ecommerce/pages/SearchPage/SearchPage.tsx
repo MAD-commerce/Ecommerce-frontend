@@ -62,13 +62,6 @@ export const SearchPage = () => {
 						</div>
 
 						<div
-							className='alert alert-primary'
-							style={{ display: showSearch ? '' : 'none' }}
-						>
-							Buscar
-						</div>
-
-						<div
 							aria-label='alert-danger'
 							className='alert alert-danger'
 							style={{ display: showError ? '' : 'none' }}
@@ -85,6 +78,7 @@ export const SearchPage = () => {
 									price={product.price}
 									images={product.images}
 									type={product.type}
+									discount={product.discount}
 								/>
 							))}
 						</div>

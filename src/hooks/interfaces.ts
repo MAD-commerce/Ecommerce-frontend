@@ -1,9 +1,15 @@
 // UseAuthStore
 interface AuthState {
 	status: string;
-	user: {} | null;
+	user: null | User;
 	errorMessage: string | null;
 }
+interface User {
+	name: string;
+	uid: string;
+	role: string;
+}
+
 interface entryPeticion {
 	email: string;
 	password: string;

@@ -54,6 +54,7 @@ export const Register = ({
 									className='input'
 									name='registerEmail'
 									value={registerEmail}
+									autoComplete='off'
 									onChange={onLoginInputChange}
 								/>
 							</div>
@@ -63,6 +64,7 @@ export const Register = ({
 									type='password'
 									placeholder='Contraseña'
 									className='input'
+									autoComplete='off'
 									name='registerPassword'
 									value={registerPassword}
 									onChange={onLoginInputChange}
