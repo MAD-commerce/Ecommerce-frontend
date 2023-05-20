@@ -1,0 +1,12 @@
+
+.form__container {
+    display: flex;
+    margin-bottom: 5rem;
+}
+.search-form {
+    background: #ffffff;
+    font-family: inherit;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+}

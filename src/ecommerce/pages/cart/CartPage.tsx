@@ -2,9 +2,9 @@ import { Footer, Loading, NavBar } from '../../../components';
 
 import { useProductsStore } from '../../../hooks';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 import './cart.css';
-import Swal from 'sweetalert2';
 
 const ProductItem = ({
 	_id = '',

@@ -60,7 +60,10 @@ export const NavBar = ({ type }: { type: string }): JSX.Element => {
 							</a>
 						</li>
 						<li className='nav__item'>
-							<a href='' className='nav__link'>
+							<a
+								onClick={() => navigate('/ecommerce/search')}
+								className='nav__link'
+							>
 								<i className='bx bxs-search nav__icon'></i>
 							</a>
 						</li>
