@@ -59,9 +59,6 @@ export const Login = ({
 										onChange={onLoginInputChange}
 									/>
 								</div>
-								<a className='recovery__text' href='#'>
-									Recuperar contraseña
-								</a>
 							</div>
 							<input className='submit-button' type='submit' value='Ingrese' />
 						</form>

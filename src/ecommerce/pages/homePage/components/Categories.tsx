@@ -3,11 +3,46 @@ import { Product } from '../../../components/Product';
 
 export const Categories = ({ products }: { products: any }): JSX.Element => {
 	const [filter, setFilter] = useState('all');
+	const [counter, setCounter] = useState(8);
 
 	const filtrarProductos = () => {
 		return filter === 'all'
 			? products
 			: products.filter((product: ProductInterface) => product.type === filter);
+	};
+
+	const generateProducts = () => {
+		let cont = 0;
+
+		return JSON.parse(JSON.stringify(filtrarProductos())).map(
+			(product: ProductInterface) => {
+				if (cont < counter) {
+					return (
+						<Product
+							key={`${(cont += 1)}`}
+							_id={product._id}
+							name={product.name}
+							price={product.price}
+							images={product.images}
+							type={product.type}
+							discount={product.discount}
+						/>
+					);
+				} else {
+					if (cont === counter) {
+						return (
+							<button
+								onClick={() => setCounter(counter + counter)}
+								className='submit-button flex-cente'
+								key={`${(cont += 1)}`}
+							>
+								Cargar todos
+							</button>
+						);
+					}
+				}
+			}
+		);
 	};
 
 	return (
@@ -33,21 +68,7 @@ export const Categories = ({ products }: { products: any }): JSX.Element => {
 							Inferior
 						</button>
 					</div>
-					<div className='products__container grid'>
-						{JSON.parse(JSON.stringify(filtrarProductos())).map(
-							(product: ProductInterface) => (
-								<Product
-									key={product._id}
-									_id={product._id}
-									name={product.name}
-									price={product.price}
-									images={product.images}
-									type={product.type}
-									discount={product.discount}
-								/>
-							)
-						)}
-					</div>
+					<div className='products__container grid'>{generateProducts()}</div>
 				</div>
 			</section>
 		</>

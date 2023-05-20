@@ -18,15 +18,11 @@ export const useProductsStore = () => {
 
 	const dispatch = useDispatch();
 
-	// Todo: Realizar
 	const createProduct = async ({ ...product }: ProductInterface) => {
 		const formData = createFormData(product);
 
 		try {
-			const { ...data } = await ecommerceApi.post('products/new', formData);
-
-			console.log(data);
-			// dispatch();
+			await ecommerceApi.post('products/new', formData);
 		} catch (error) {
 			setTimeout(() => {
 				dispatch(clearErrorMessage());

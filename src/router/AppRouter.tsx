@@ -14,7 +14,6 @@ export const AppRouter = (): JSX.Element => {
 	const { status, checkAuthToken, user } = useAuthStore();
 	const { status: statusProduct } = useProductsStore();
 
-	// todo: verificar el token
 	useEffect(() => {
 		checkAuthToken();
 	}, []);
@@ -24,8 +23,6 @@ export const AppRouter = (): JSX.Element => {
 	}
 
 	return (
-		// todo: Hacer que cuando esta autenticado no pueda volver al login
-		// todo: si se devuelve no se pierda el store del usuario
 		<>
 			<Routes>
 				{status === 'authenticated' ? (

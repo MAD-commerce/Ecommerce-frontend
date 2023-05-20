@@ -15,7 +15,6 @@ export const HomePage = () => {
 		getAllProducts();
 	}, []);
 
-	// TODO: Verificar esto si es mejor con estatus o con undefined
 	if (products.length === undefined) {
 		return <Loading />;
 	}

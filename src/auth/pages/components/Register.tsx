@@ -1,5 +1,4 @@
-import { useForm } from '../../../hooks';
-import { googleButton } from './googleButton';
+import { useAuthStore, useForm } from '../../../hooks';
 
 import logo from '../../../assets/logo.png';
 
@@ -22,9 +21,15 @@ export const Register = ({
 		onInputChange: onLoginInputChange,
 	} = useForm(loginFormFields);
 
+	const { startRegister } = useAuthStore();
+
 	const loginSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
-		// startLogin({ email: loginEmail, password: loginPassword });
+		startRegister({
+			name: registerName,
+			email: registerEmail,
+			password: registerPassword,
+		});
 	};
 
 	return (
@@ -34,12 +39,16 @@ export const Register = ({
 					<div className='auth__box grid'>
 						<img className='auth__logo' src={logo} alt='logo' />
 						<h1>Registrese</h1>
-						<form className='form grid' onSubmit={loginSubmit}>
+						<form
+							className='form grid'
+							onSubmit={loginSubmit}
+							autoComplete='off'
+						>
 							<div className='group-input'>
 								<i className='bx bxs-user input-icon'></i>
 								<input
 									type='text'
-									placeholder='Name'
+									placeholder='Nombre'
 									className='input'
 									name='registerName'
 									value={registerName}
@@ -50,11 +59,10 @@ export const Register = ({
 								<i className='bx bxs-user-circle input-icon'></i>
 								<input
 									type='email'
-									placeholder='Email'
+									placeholder='Correo'
 									className='input'
 									name='registerEmail'
 									value={registerEmail}
-									autoComplete='off'
 									onChange={onLoginInputChange}
 								/>
 							</div>
@@ -64,7 +72,6 @@ export const Register = ({
 									type='password'
 									placeholder='Contraseña'
 									className='input'
-									autoComplete='off'
 									name='registerPassword'
 									value={registerPassword}
 									onChange={onLoginInputChange}
@@ -80,7 +87,6 @@ export const Register = ({
 							<a className='button' onClick={() => selectPage('Login')}>
 								Iniciar sesión
 							</a>
-							{googleButton()}
 						</div>
 					</div>
 				</div>

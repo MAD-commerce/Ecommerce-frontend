@@ -131,7 +131,6 @@
 .product__button-cart:hover {
     transform: scale(1.3);
 }
-
 .addProduct {
     position: fixed;
     right: 2.5rem;

@@ -6,7 +6,6 @@ const { VITE_API_URL } = getEnvVariables();
 const ecommerceApi = axios.create({
 	baseURL: VITE_API_URL,
 	headers: {
-		// TODO: se cambio esto= x-token: localStorage.getItem('token'),
 		xtoken: localStorage.getItem('token'),
 	},
 });

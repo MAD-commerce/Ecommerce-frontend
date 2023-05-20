@@ -1,8 +1,7 @@
-import React from 'react';
 import { useAuthStore, useProductsStore } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { calculateDiscount } from '../../helpers/getDiscount';
+import Swal from 'sweetalert2';
 
 export const Product = ({
 	_id = '',
@@ -30,7 +29,7 @@ export const Product = ({
 			<div className='product__box-background flex-center'>
 				<img
 					src={`data:image/png;base64,${images[0]}`}
-					alt='Bape'
+					alt='Image Product'
 					className='product__box-image'
 				/>
 			</div>
