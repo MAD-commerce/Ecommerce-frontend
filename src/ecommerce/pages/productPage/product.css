@@ -11,6 +11,7 @@
     width: 70%;
 }
 .blob {
+    position: absolute;
     height: 1447px;
     width: 753px;
     z-index: -1;

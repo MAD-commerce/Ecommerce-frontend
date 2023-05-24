@@ -11,6 +11,8 @@ import {
 } from '../store/Products/productsSlice';
 import { createFormData } from '../helpers/createFormData';
 
+// *Patron de diseño llamado (flux Action - Dispatch - Store - View)
+
 export const useProductsStore = () => {
 	const { status, products, cart, lastProduct, errorMessage } = useSelector(
 		(state: { products: ProductState }) => state.products

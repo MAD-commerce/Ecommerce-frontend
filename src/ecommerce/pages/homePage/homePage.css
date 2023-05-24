@@ -142,6 +142,16 @@
     cursor: pointer;
 }
 
+/*=============== Description Section ===============*/
+
+.description__box {
+    grid-template-columns: repeat(2, 1fr);
+}
+.description-image {
+    width: 100%;
+}
+
+
 /*=============== BREAKPOINTS ===============*/
 
 @media screen and (max-width: 1200px) {
@@ -178,6 +188,9 @@
     }
     .image__side {
         height: 150px;
+    }
+    .description__box {
+        grid-template-columns: none;
     }
     
 }

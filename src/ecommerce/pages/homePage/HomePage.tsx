@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { NavBar, Footer, Loading } from '../../../components';
 
 import { useAuthStore, useProductsStore } from '../../../hooks';
-import { Home, Categories, Images, Popular } from './components';
+import { Home, Categories, Images, Description } from './components';
 
 import { useEffect } from 'react';
 
@@ -26,9 +26,9 @@ export const HomePage = () => {
 				<main className='main'>
 					<Home />
 					<Images />
+					<Description />
 
 					<Categories products={products} />
-					<Popular />
 
 					{user!.role === 'admin' ? (
 						<div

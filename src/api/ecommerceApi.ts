@@ -3,6 +3,8 @@ import { getEnvVariables } from '../helpers/getEnv';
 
 const { VITE_API_URL } = getEnvVariables();
 
+// *Equivale al patron de diseño singlenton
+
 const ecommerceApi = axios.create({
 	baseURL: VITE_API_URL,
 	headers: {
