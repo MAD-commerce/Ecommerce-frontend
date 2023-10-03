@@ -7,7 +7,7 @@ import {
 	onLogout,
 	clearErrorMessage,
 } from '../store/auth/authSlice';
-import ecommerceApi from '../api/ecommerceApi';
+import ecommerceApi, { updateAuthToken } from '../api/ecommerceApi';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -28,6 +28,8 @@ export const useAuthStore = () => {
 			});
 
 			localStorage.setItem('token', data.token);
+
+			updateAuthToken(data.token);
 
 			dispatch(onLogin({ ...data }));
 		} catch (error) {

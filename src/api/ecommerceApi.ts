@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosHeaders } from 'axios';
 import { getEnvVariables } from '../helpers/getEnv';
 
 const { VITE_API_URL } = getEnvVariables();
@@ -7,10 +7,14 @@ const { VITE_API_URL } = getEnvVariables();
 
 const ecommerceApi = axios.create({
 	baseURL: VITE_API_URL,
-	headers: {
-		xtoken: localStorage.getItem('token'),
-	},
+	// headers: {
+	// 	xtoken: localStorage.getItem('token'),
+	// },
 });
+
+export function updateAuthToken(token: string) {
+	ecommerceApi.defaults.headers.common['xtoken'] = token;
+}
 
 // ecommerceApi.interceptors.request.use(config => {
 // 	config.headers = {

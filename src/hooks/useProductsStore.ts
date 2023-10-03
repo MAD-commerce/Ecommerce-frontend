@@ -89,7 +89,6 @@ export const useProductsStore = () => {
 		dispatch(onChecking());
 		try {
 			const { data } = await ecommerceApi.get('products/getCartById');
-
 			dispatch(onGetCart(data.cart));
 		} catch (error) {
 			setTimeout(() => {
