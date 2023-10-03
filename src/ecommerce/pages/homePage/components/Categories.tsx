@@ -1,65 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useProductsStore } from '../../../../hooks';
-import Swal from 'sweetalert2';
-
-const Product = ({
-	_id = '',
-	name,
-	price,
-	images,
-}: ProductInterface): JSX.Element => {
-	const { updateCart } = useProductsStore();
-	const navigate = useNavigate();
-
-	const seeProduct = () => {
-		navigate(`/ecommerce/product/${_id}`);
-	};
-
-	const sendProduct = () => {
-		updateCart({ _id });
-		Swal.fire('Buen trabajo', 'Producto agregado correctamente!', 'success');
-	};
-
-	// var base64Icon = `data:image/png;base64,${image}`;
-
-	return (
-		<div className='product__box'>
-			<div className='product__box-background flex-center'>
-				<img
-					src={`data:image/png;base64,${images[0]}`}
-					alt='Bape'
-					className='product__box-image'
-				/>
-			</div>
-			<div className='product__box-information'>
-				<div className='product__information'>
-					<p className='product__information-name'>{name}</p>
-					<div className='prices'>
-						<p className='product__information-price'>{price}</p>
-					</div>
-				</div>
-				<div className='flex-center'>
-					<div
-						className='product__button-cart flex-center'
-						onClick={() => seeProduct()}
-					>
-						<i className='bx bx-fullscreen'></i>
-					</div>
-					<div
-						className='product__button-cart flex-center'
-						onClick={() => sendProduct()}
-					>
-						<i className='bx bx-cart-add'></i>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-};
+import { Product } from '../../../components/Product';
 
 export const Categories = ({ products }: { products: any }): JSX.Element => {
 	const [filter, setFilter] = useState('all');
+	const [counter, setCounter] = useState(8);
 
 	const filtrarProductos = () => {
 		return filter === 'all'
@@ -67,13 +11,49 @@ export const Categories = ({ products }: { products: any }): JSX.Element => {
 			: products.filter((product: ProductInterface) => product.type === filter);
 	};
 
+	const generateProducts = () => {
+		let cont = 0;
+
+		return JSON.parse(JSON.stringify(filtrarProductos())).map(
+			(product: ProductInterface) => {
+				if (cont < counter) {
+					return (
+						<Product
+							key={`${(cont += 1)}`}
+							_id={product._id}
+							name={product.name}
+							price={product.price}
+							images={product.images}
+							type={product.type}
+							discount={product.discount}
+						/>
+					);
+				} else {
+					if (cont === counter) {
+						return (
+							<button
+								onClick={() => setCounter(counter + counter)}
+								className='submit-button flex-cente'
+								key={`${(cont += 1)}`}
+							>
+								Cargar todos
+							</button>
+						);
+					}
+				}
+			}
+		);
+	};
+
 	return (
 		<>
 			<section className='section' id='categories'>
+				<h2 className='section__title'>Categorías</h2>
+				<span className='section__subtitle'>Productos filtrados</span>
 				<div className='categories_container container grid'>
 					<div className='categories__buttons'>
 						<button className='submit-button' onClick={() => setFilter('all')}>
-							All
+							Todos
 						</button>
 						<button
 							className='submit-button'
@@ -88,20 +68,7 @@ export const Categories = ({ products }: { products: any }): JSX.Element => {
 							Inferior
 						</button>
 					</div>
-					<div className='products__container grid'>
-						{JSON.parse(JSON.stringify(filtrarProductos())).map(
-							(product: ProductInterface) => (
-								<Product
-									key={product._id}
-									_id={product._id}
-									name={product.name}
-									price={product.price}
-									images={product.images}
-									type={product.type}
-								/>
-							)
-						)}
-					</div>
+					<div className='products__container grid'>{generateProducts()}</div>
 				</div>
 			</section>
 		</>

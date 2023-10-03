@@ -7,10 +7,9 @@ import {
 	onLogout,
 	clearErrorMessage,
 } from '../store/auth/authSlice';
-
 import ecommerceApi from '../api/ecommerceApi';
-import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export const useAuthStore = () => {
 	const { status, user, errorMessage } = useSelector(
@@ -30,9 +29,7 @@ export const useAuthStore = () => {
 
 			localStorage.setItem('token', data.token);
 
-			const { uid, name } = data;
-
-			dispatch(onLogin({ uid, email, name }));
+			dispatch(onLogin({ ...data }));
 		} catch (error) {
 			dispatch(onLogout('Credenciales incorrectas'));
 			setTimeout(() => {
@@ -43,12 +40,6 @@ export const useAuthStore = () => {
 
 	const startLoginGoogle = async (response: any) => {
 		dispatch(onChecking());
-
-		var userObject: { email: string; name: string } = jwt_decode(
-			response.credential
-		);
-
-		const { email, name } = userObject;
 
 		try {
 			const headers = {
@@ -66,7 +57,7 @@ export const useAuthStore = () => {
 
 			localStorage.setItem('token', data.renewToken);
 
-			dispatch(onLogin({ email, name }));
+			dispatch(onLogin({ ...data }));
 		} catch (error) {
 			dispatch(onLogout('Credenciales incorrectas'));
 			setTimeout(() => {
@@ -75,7 +66,6 @@ export const useAuthStore = () => {
 		}
 	};
 
-	// Todo: Realizar
 	const startRegister = async ({
 		name,
 		email,
@@ -84,7 +74,12 @@ export const useAuthStore = () => {
 		dispatch(onChecking());
 
 		try {
-			console.log(name, email, password);
+			const { data } = await ecommerceApi.post('auth/new', {
+				name,
+				email,
+				password,
+			});
+			dispatch(onLogin({ ...data }));
 		} catch (error) {
 			dispatch(onLogout(error.response.data?.msg || '---'));
 			setTimeout(() => {
@@ -106,7 +101,7 @@ export const useAuthStore = () => {
 			const { data } = await ecommerceApi.get('auth/renewJwt', { headers });
 			localStorage.setItem('token', data.token);
 			localStorage.setItem('token-init-plate', `${new Date().getTime()}`);
-			dispatch(onLogin({ name: data.name, uid: data.uid }));
+			dispatch(onLogin({ name: data.name, uid: data.uid, role: data.role }));
 		} catch (error) {
 			localStorage.clear();
 			dispatch(onLogout(''));
@@ -116,6 +111,13 @@ export const useAuthStore = () => {
 	const startLogout = () => {
 		localStorage.clear();
 		dispatch(onLogout(''));
+		Swal.fire({
+			position: 'top-end',
+			icon: 'success',
+			title: 'Su sección fue cerrada correctamente',
+			showConfirmButton: false,
+			timer: 1500,
+		});
 	};
 
 	return {

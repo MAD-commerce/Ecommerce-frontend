@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useProductsStore } from '../../../hooks/useProductsStore';
 
-import './product.css';
+import { calculateDiscount } from '../../../helpers/getDiscount';
 import Swal from 'sweetalert2';
+import './product.css';
 
 const PresentationImage = ({ image }: { image: string }) => {
 	return (
@@ -25,7 +26,6 @@ export const ProductPage = () => {
 	const [loading, setLoading] = useState(true);
 	let contador = 0;
 
-	// Todo: *Arreglar esta peticion que se crea todo el rato
 	useEffect(() => {
 		getProductById({
 			productId,
@@ -37,15 +37,6 @@ export const ProductPage = () => {
 	if (loading || status == 'not-ready') {
 		return <Loading />;
 	}
-
-	const calculateDiscount = (price = '', discount = ''): string => {
-		if (price && discount === '') return 'error';
-
-		return (
-			parseInt(price) -
-			parseInt(price) * (parseInt(discount) / 100)
-		).toFixed(2);
-	};
 
 	const sendProduct = () => {
 		updateCart({ _id: productId });
@@ -89,7 +80,6 @@ export const ProductPage = () => {
 											lastProduct?.price,
 											lastProduct?.discount
 										)}`}</p>
-										{/* TODO: Arreglar los precios */}
 										<p className='product-priceBefore'>{`$ ${lastProduct?.price}`}</p>
 										<p className='product-discount'>{`${lastProduct?.discount}% Off`}</p>
 									</div>

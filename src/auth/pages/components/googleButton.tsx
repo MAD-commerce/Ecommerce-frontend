@@ -10,6 +10,8 @@ declare global {
 	}
 }
 
+// https://developers.google.com/identity/gsi/web/reference/js-reference?hl=es-419
+
 export const googleButton = (): JSX.Element => {
 	const { startLoginGoogle } = useAuthStore();
 
@@ -36,7 +38,9 @@ export const googleButton = (): JSX.Element => {
 				document.getElementById('sigInDiv'),
 				{
 					theme: 'outline',
-					size: 'large',
+					size: 'medium',
+					shape: 'pill',
+					text: 'signin',
 				}
 			);
 
@@ -52,12 +56,11 @@ export const googleButton = (): JSX.Element => {
 
 	const onFailture = () => {
 		console.log('Algo salio mal');
-		// onResetForm;
 	};
 
 	return (
-		<div className='google__button' id='sigInDiv'>
-			coso
+		<div className='' id='sigInDiv'>
+			Google
 		</div>
 	);
 };
