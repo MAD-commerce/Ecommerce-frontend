@@ -59,6 +59,8 @@ export const useAuthStore = () => {
 
 			localStorage.setItem('token', data.renewToken);
 
+			updateAuthToken(data.renewToken);
+
 			dispatch(onLogin({ ...data }));
 		} catch (error) {
 			dispatch(onLogout('Credenciales incorrectas'));
