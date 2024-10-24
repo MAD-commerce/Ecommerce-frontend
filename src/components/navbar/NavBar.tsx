@@ -41,11 +41,18 @@ export const NavBar = ({ type }: { type: string }): JSX.Element => {
 								</a>
 							</li>
 						) : (
-							<li className='nav__item'>
-								<a onClick={() => startLogout()} className='nav__link'>
-									Logout
-								</a>
-							</li>
+							<>
+								<li className='nav__item'>
+									<a onClick={() => { navigate('/ecommerce/settings') }} className='nav__link'>
+										Ajustes
+									</a>
+								</li>
+								<li className='nav__item'>
+									<a onClick={() => startLogout()} className='nav__link'>
+										Logout
+									</a>
+								</li>
+							</>
 						)}
 					</ul>
 				</div>

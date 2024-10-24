@@ -9,6 +9,7 @@ import { CartPage } from '../ecommerce/pages/cart/CartPage';
 import { useProductsStore } from '../hooks';
 import { SearchPage } from '../ecommerce/pages/SearchPage/SearchPage';
 import { CreateNewProduct } from '../ecommerce/pages/createProduct/CreateNewProduct';
+import { SettingsPage } from '../ecommerce/pages/settings/SettingsPage';
 
 export const AppRouter = (): JSX.Element => {
 	const { status, checkAuthToken, user } = useAuthStore();
@@ -34,6 +35,7 @@ export const AppRouter = (): JSX.Element => {
 						/>
 						<Route path='/ecommerce/search' element={<SearchPage />} />
 						<Route path='/ecommerce/cart' element={<CartPage />} />
+						<Route path='/ecommerce/settings' element={<SettingsPage />} />
 
 						{user?.role === 'admin' ? (
 							<Route
