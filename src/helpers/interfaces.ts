@@ -8,6 +8,8 @@ interface User {
 	name: string;
 	uid: string;
 	role: string;
+	email: string;
+	address: string;
 }
 
 interface entryPeticion {

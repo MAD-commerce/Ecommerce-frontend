@@ -1,5 +1,6 @@
 import { Footer, Loading, NavBar } from '../../../components';
 
+import { useNavigate } from 'react-router-dom';
 import { useProductsStore } from '../../../hooks';
 import { ProductItem } from './ProductItem';
 import { useEffect } from 'react';
@@ -8,6 +9,7 @@ import './cart.css';
 
 export const CartPage = () => {
 	const { products = [], status, cart = [], getCartById } = useProductsStore();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		getCartById();
@@ -59,7 +61,7 @@ export const CartPage = () => {
 								)
 							)}
 
-							<button className='submit-button'>Comprar</button>
+							<button className='submit-button' onClick={() => { navigate('/ecommerce/pay') }}>Comprar</button>
 						</div>
 					</section>
 				</main>

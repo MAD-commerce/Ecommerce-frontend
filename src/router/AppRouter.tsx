@@ -10,6 +10,7 @@ import { useProductsStore } from '../hooks';
 import { SearchPage } from '../ecommerce/pages/SearchPage/SearchPage';
 import { CreateNewProduct } from '../ecommerce/pages/createProduct/CreateNewProduct';
 import { SettingsPage } from '../ecommerce/pages/settings/SettingsPage';
+import { PayPage } from '../ecommerce/pages/payPage/PayPage';
 
 export const AppRouter = (): JSX.Element => {
 	const { status, checkAuthToken, user } = useAuthStore();
@@ -35,6 +36,7 @@ export const AppRouter = (): JSX.Element => {
 						/>
 						<Route path='/ecommerce/search' element={<SearchPage />} />
 						<Route path='/ecommerce/cart' element={<CartPage />} />
+						<Route path='/ecommerce/pay' element={<PayPage />} />
 						<Route path='/ecommerce/settings' element={<SettingsPage />} />
 
 						{user?.role === 'admin' ? (
@@ -65,6 +67,7 @@ export const AppRouter = (): JSX.Element => {
 						{statusProduct === 'ready' ? (
 							<>
 								<Route path='/ecommerce/cart' element={<Auth />} />
+								<Route path='/ecommerce/pay' element={<PayPage />} />
 							</>
 						) : (
 							<Route

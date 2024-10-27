@@ -36,7 +36,7 @@ export const ProductItem = ({
 						<p className='information-available'>Disponible</p>
 						{/* TODO: Agregar a las peticion de ingresar producto la talla y el color */}
 						<p>Talla: M</p>
-						<p>Color: ????</p>
+						<p>Cantidad: ????</p>
 						<button className='submit-button' onClick={() => deleteProduct()}>
 							Eliminar
 						</button>

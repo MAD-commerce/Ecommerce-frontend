@@ -86,7 +86,7 @@ export const ProductPage = () => {
 									<hr />
 									<p>{lastProduct?.description}</p>
 									<hr />
-									<p>Color: </p>
+									<p>Cantidad: </p>
 									<p>Size: </p>
 									<button
 										className='submit-button'

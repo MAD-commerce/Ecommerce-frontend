@@ -48,7 +48,9 @@ export const SettingsPage = () => {
               <div className='settings__content'>
                 <div className='settings__form'>
                   <form className='form grid' onSubmit={updateProduct}>
+                    <h1>Actualizar información</h1>
                     <div className='group-input'>
+                      <p>Nombre</p>
                       <input
                         type='text'
                         placeholder='Nombre'
@@ -60,6 +62,31 @@ export const SettingsPage = () => {
                       />
                     </div>
                     <div className='group-input'>
+                      <p>Nombre</p>
+                      <input
+                        type='text'
+                        placeholder='Dirección'
+                        className=''
+                        name='address'
+                        value={address}
+                        autoComplete='off'
+                        onChange={onInputChange}
+                      />
+                    </div>
+                    <div className='group-input'>
+                      <p>Nombre</p>
+                      <input
+                        type='text'
+                        placeholder='Dirección'
+                        className=''
+                        name='address'
+                        value={address}
+                        autoComplete='off'
+                        onChange={onInputChange}
+                      />
+                    </div>
+                    <div className='group-input'>
+                      <p>Nombre</p>
                       <input
                         type='text'
                         placeholder='Dirección'
