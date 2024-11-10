@@ -115,8 +115,19 @@ export const useProductsStore = () => {
 			);
 
 			dispatch(onGetCart(nuevoArray));
-		} catch (error) {}
+		} catch (error) { }
 	};
+
+	const sendEmail = async (order: Order) => {
+		dispatch(onChecking());
+		try {
+			await ecommerceApi.post('products/sendEmail', order);
+		} catch (error) {
+			setTimeout(() => {
+				dispatch(clearErrorMessage());
+			}, 10);
+		}
+	}
 
 	return {
 		// Propiedades
@@ -133,5 +144,6 @@ export const useProductsStore = () => {
 		getCartById,
 		updateCart,
 		deleteProductCardById,
+		sendEmail
 	};
 };

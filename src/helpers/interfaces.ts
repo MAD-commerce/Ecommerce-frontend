@@ -41,6 +41,20 @@ interface loginPeticionRenewJwtGoogle {
 }
 
 // Use Product Store
+interface Product {
+	id: string;
+	name: string;
+	cantidad: number;
+}
+
+interface Order {
+	email: string | undefined;
+	adress: string;
+	evidence: string | ArrayBuffer | null;
+	products: Product[];
+	totalPrice: number;
+}
+
 interface ProductState {
 	status: string;
 	cart: [];

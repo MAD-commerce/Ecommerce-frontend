@@ -1,8 +1,8 @@
 import { Footer, NavBar } from '../../../components'
 import qr from '../../../assets/pagos.png'
 import './pay.css'
-import { useState } from 'react'
-import { useAuthStore, useForm } from '../../../hooks'
+import { SetStateAction, useEffect, useState } from 'react'
+import { useAuthStore, useForm, useProductsStore } from '../../../hooks'
 
 const addressFormFields = {
     departament: '',
@@ -13,6 +13,8 @@ const addressFormFields = {
 export const PayPage = () => {
 
     const { user } = useAuthStore();
+    const { cart, products, sendEmail } = useProductsStore();
+    const [productsList, setProductsList] = useState<ProductInterface[]>([])
 
     const {
         departament,
@@ -23,11 +25,77 @@ export const PayPage = () => {
     } = useForm(addressFormFields);
 
     const [resume, setResume] = useState(false)
+    const [sumatory, setSumatory] = useState(0)
+
+    useEffect(() => {
+        filtrarProductos();
+        calculateSumatory();
+        listProducts();
+    }, [])
+
+    const listProducts = () => {
+        let productsList: SetStateAction<ProductInterface[]> = []
+        JSON.parse(JSON.stringify(filtrarProductos())).map(
+            (product: ProductInterface) => (
+                productsList.push(product)
+            )
+        )
+        setProductsList(productsList)
+    }
+
+    const calculateSumatory = (): void => {
+        let sum = 0;
+        JSON.parse(JSON.stringify(filtrarProductos())).map((product: ProductInterface) => {
+            sum += parseInt(calculateDiscount(product.price, product.discount));
+        });
+        setSumatory(sum);
+    }
+
+    const filtrarProductos = () => {
+        if (Array.isArray(cart)) {
+            const idsEnAmbasListas = products.filter((product: ProductInterface) =>
+                cart.some((cart: Cart) => cart._id === product._id)
+            );
+
+            return idsEnAmbasListas;
+        }
+
+        return [];
+    };
+
+    const calculateDiscount = (price = '', discount = ''): string => {
+        if (price && discount === '') return 'error';
+
+        return (
+            parseInt(price) -
+            parseInt(price) * (parseInt(discount) / 100)
+        ).toFixed(2);
+    };
 
     const handlePay = (file: File | undefined) => {
         if (file) {
             setResume(true)
-            console.log(file);
+            let base64Image: string | ArrayBuffer | null
+
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                base64Image = reader.result;
+                let modelAPi: Order = {
+                    email: user?.email,
+                    adress: user?.address!,
+                    evidence: reader.result,
+                    products: productsList.map((product) => ({
+                        id: product._id!,
+                        name: product.name!,
+                        cantidad: 1
+                    })),
+                    totalPrice: sumatory
+                }
+
+                sendEmail(modelAPi)
+            };
+            reader.readAsDataURL(file);
+
         } else {
             return
         }

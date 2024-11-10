@@ -3,17 +3,22 @@ import { Footer, Loading, NavBar } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import { useProductsStore } from '../../../hooks';
 import { ProductItem } from './ProductItem';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import './cart.css';
 
 export const CartPage = () => {
 	const { products = [], status, cart = [], getCartById } = useProductsStore();
 	const navigate = useNavigate();
+	const [sumatory, setSumatory] = useState(0)
 
 	useEffect(() => {
 		getCartById();
 	}, []);
+
+	useEffect(() => {
+		calculateSumatory();
+	}, [cart]);
 
 	const filtrarProductos = () => {
 		if (Array.isArray(cart)) {
@@ -25,6 +30,23 @@ export const CartPage = () => {
 		}
 
 		return [];
+	};
+
+	const calculateSumatory = (): void => {
+		let sum = 0;
+		JSON.parse(JSON.stringify(filtrarProductos())).map((product: ProductInterface) => {
+			sum += parseInt(calculateDiscount(product.price, product.discount));
+		});
+		setSumatory(sum);
+	}
+
+	const calculateDiscount = (price = '', discount = ''): string => {
+		if (price && discount === '') return 'error';
+
+		return (
+			parseInt(price) -
+			parseInt(price) * (parseInt(discount) / 100)
+		).toFixed(2);
 	};
 
 	if (status === 'not-ready') {
@@ -60,6 +82,12 @@ export const CartPage = () => {
 									)
 								)
 							)}
+
+							<div className='cart__total'>
+								<div className='cart__total-container'>
+									<span className='total'>{`El total de su compra es: ${sumatory} `}</span>
+								</div>
+							</div>
 
 							<button className='submit-button' onClick={() => { navigate('/ecommerce/pay') }}>Comprar</button>
 						</div>
