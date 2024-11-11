@@ -105,7 +105,7 @@ export const useAuthStore = () => {
 			const { data } = await ecommerceApi.get('auth/renewJwt', { headers });
 			localStorage.setItem('token', data.token);
 			localStorage.setItem('token-init-plate', `${new Date().getTime()}`);
-			dispatch(onLogin({ name: data.name, uid: data.uid, role: data.role }));
+			dispatch(onLogin({ name: data.name, uid: data.uid, role: data.role, email: data.email, address: data.address }));
 		} catch (error) {
 			localStorage.clear();
 			dispatch(onLogout(''));
@@ -124,6 +124,30 @@ export const useAuthStore = () => {
 		});
 	};
 
+	const updateUser = async (user: User2) => {
+
+		Swal.fire({
+			position: 'top-end',
+			icon: 'success',
+			title: 'Información actualizada',
+			showConfirmButton: false,
+			timer: 1500,
+		});
+
+		navigate('/ecommerce');
+
+		try {
+
+			const { data } = await ecommerceApi.put('auth/updateUser', user);
+
+			dispatch(onLogin({ ...data }));
+
+		} catch (error) {
+			console.error('Error updating', error);
+		}
+
+	}
+
 	return {
 		// Propiedades
 		status,
@@ -136,5 +160,6 @@ export const useAuthStore = () => {
 		checkAuthToken,
 		startLogout,
 		startLoginGoogle,
+		updateUser
 	};
 };

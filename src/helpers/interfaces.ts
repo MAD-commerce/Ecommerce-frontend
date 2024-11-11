@@ -12,6 +12,12 @@ interface User {
 	address: string;
 }
 
+interface User2 {
+	name: string;
+	email: string;
+	address: string;
+}
+
 interface entryPeticion {
 	email: string;
 	password: string;

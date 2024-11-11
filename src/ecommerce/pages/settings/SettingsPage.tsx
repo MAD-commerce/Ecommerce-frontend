@@ -1,28 +1,26 @@
 
+import { useEffect } from 'react';
 import { Footer, NavBar } from '../../../components';
-import { useForm } from '../../../hooks';
+import { useAuthStore, useForm } from '../../../hooks';
 import './settings.css';
 
 const updateFormField = {
   name: '',
-  price: '',
-  type: '',
-  discount: '',
-  description: '',
+  address: '',
+  email: '',
 };
 
 type updateFormField = {
   name: string;
-  price: string;
-  type: string;
-  discount: string;
-  description: string;
+  address: string;
+  email: string;
 };
 
 export const SettingsPage = () => {
 
   const {
     name,
+    email,
     address,
     onInputChange,
     onResetForm,
@@ -31,8 +29,30 @@ export const SettingsPage = () => {
     onTextAreaChange,
   } = useForm(updateFormField);
 
-  const updateProduct = async (e: React.FormEvent) => {
+  const { user, updateUser } = useAuthStore();
 
+  useEffect(() => {
+    updateFormField.name = user?.name || '';
+    updateFormField.address = user?.address || '';
+    updateFormField.email = user?.email || '';
+  }, [user]);
+
+  const handleUpdateUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      // Call the API to update the product
+      onResetForm();
+
+      updateUser({
+        name,
+        address,
+        email,
+      });
+
+    } catch (error) {
+      console.error('Error updating the product', error);
+    }
   }
 
   return (
@@ -47,7 +67,7 @@ export const SettingsPage = () => {
               <hr />
               <div className='settings__content'>
                 <div className='settings__form'>
-                  <form className='form grid' onSubmit={updateProduct}>
+                  <form className='form grid' onSubmit={handleUpdateUser}>
                     <h1>Actualizar información</h1>
                     <div className='group-input'>
                       <p>Nombre</p>
@@ -62,7 +82,7 @@ export const SettingsPage = () => {
                       />
                     </div>
                     <div className='group-input'>
-                      <p>Nombre</p>
+                      <p>Dirección</p>
                       <input
                         type='text'
                         placeholder='Dirección'
@@ -74,25 +94,13 @@ export const SettingsPage = () => {
                       />
                     </div>
                     <div className='group-input'>
-                      <p>Nombre</p>
+                      <p>Correo</p>
                       <input
                         type='text'
-                        placeholder='Dirección'
+                        placeholder='email'
                         className=''
-                        name='address'
-                        value={address}
-                        autoComplete='off'
-                        onChange={onInputChange}
-                      />
-                    </div>
-                    <div className='group-input'>
-                      <p>Nombre</p>
-                      <input
-                        type='text'
-                        placeholder='Dirección'
-                        className=''
-                        name='address'
-                        value={address}
+                        name='email'
+                        value={email}
                         autoComplete='off'
                         onChange={onInputChange}
                       />
