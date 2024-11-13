@@ -1,4 +1,5 @@
 import { useProductsStore } from '../hooks';
+import { ProductInterface } from './interfaces';
 
 export const getProductsByName = (name = '') => {
 	const { products } = useProductsStore();

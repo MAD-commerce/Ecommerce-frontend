@@ -3,6 +3,7 @@ import qr from '../../../assets/pagos.png'
 import './pay.css'
 import { SetStateAction, useEffect, useState } from 'react'
 import { useAuthStore, useForm, useProductsStore } from '../../../hooks'
+import { Cart, Order, ProductInterface } from '../../../helpers/interfaces'
 
 const addressFormFields = {
     departament: '',
@@ -37,7 +38,7 @@ export const PayPage = () => {
         let productsList: SetStateAction<ProductInterface[]> = []
         JSON.parse(JSON.stringify(filtrarProductos())).map(
             (product: ProductInterface) => (
-                productsList.push(product)
+                setProductsList((prevProductsList) => [...prevProductsList, product])
             )
         )
         setProductsList(productsList)

@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import { useProductsStore } from '../../../hooks';
+import { ProductInterface } from '../../../helpers/interfaces';
 
 export const ProductItem = ({
 	_id = '',

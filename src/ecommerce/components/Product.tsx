@@ -2,6 +2,7 @@ import { useAuthStore, useProductsStore } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { calculateDiscount } from '../../helpers/getDiscount';
 import Swal from 'sweetalert2';
+import { ProductInterface } from '../../helpers/interfaces';
 
 export const Product = ({
 	_id = '',
@@ -61,7 +62,7 @@ export const Product = ({
 
 
 
-						
+
 					)}
 				</div>
 			</div>

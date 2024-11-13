@@ -1,3 +1,5 @@
+import { ProductInterface } from "./interfaces";
+
 export const createFormData = ({ ...product }: ProductInterface): FormData => {
 	const formData = new FormData();
 	if (product.name !== undefined) {

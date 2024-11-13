@@ -126,3 +126,25 @@ interface FormHook {
 	onResetForm: () => void;
 	isFormValid: boolean;
 }
+
+// interfaces.ts
+export type {
+	AuthState,
+	User,
+	User2,
+	entryPeticion,
+	entryPeticionGoogle,
+	entryPeticionRegister,
+	loginPeticion,
+	loginPeticionRenewJwtGoogle,
+	Product,
+	Order,
+	ProductState,
+	ProductInterface,
+	ProductList,
+	Cart,
+	FormValidation,
+	FormState,
+	ValidationResult,
+	FormHook
+};

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { FormHook, FormState, FormValidation, ValidationResult } from '../helpers/interfaces';
 
 export const useForm = (
 	initialForm: FormState = {},

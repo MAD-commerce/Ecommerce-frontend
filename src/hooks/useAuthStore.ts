@@ -10,6 +10,7 @@ import {
 import ecommerceApi, { updateAuthToken } from '../api/ecommerceApi';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthState, entryPeticion, entryPeticionRegister, loginPeticion, loginPeticionRenewJwtGoogle, User2 } from '../helpers/interfaces';
 
 export const useAuthStore = () => {
 	const { status, user, errorMessage } = useSelector(

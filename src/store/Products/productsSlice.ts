@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ProductInterface } from '../../helpers/interfaces';
 
 interface ProductsState {
 	status: string;

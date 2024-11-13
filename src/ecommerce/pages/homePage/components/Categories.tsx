@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Product } from '../../../components/Product';
+import { ProductInterface } from '../../../../helpers/interfaces';
 
 export const Categories = ({ products }: { products: any }): JSX.Element => {
 	const [filter, setFilter] = useState('all');

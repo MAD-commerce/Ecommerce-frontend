@@ -6,6 +6,7 @@ import { ProductItem } from './ProductItem';
 import { useEffect, useState } from 'react';
 
 import './cart.css';
+import { Cart, ProductInterface } from '../../../helpers/interfaces';
 
 export const CartPage = () => {
 	const { products = [], status, cart = [], getCartById } = useProductsStore();

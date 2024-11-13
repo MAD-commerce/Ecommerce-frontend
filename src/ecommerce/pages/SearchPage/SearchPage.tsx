@@ -5,6 +5,7 @@ import { getProductsByName } from '../../../helpers/getProductByName';
 import queryString from 'query-string';
 import { Footer, NavBar } from '../../../components';
 import { Product } from '../../components/Product';
+import { ProductInterface } from '../../../helpers/interfaces';
 
 const searchField = {
 	searchText: '',

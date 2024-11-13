@@ -10,6 +10,7 @@ import {
 	onGetCart,
 } from '../store/Products/productsSlice';
 import { createFormData } from '../helpers/createFormData';
+import { Order, ProductInterface, ProductState } from '../helpers/interfaces';
 
 // *Patron de diseño llamado (flux Action - Dispatch - Store - View)
 
