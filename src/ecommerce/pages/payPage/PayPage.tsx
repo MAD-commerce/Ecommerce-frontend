@@ -101,7 +101,7 @@ export const PayPage = () => {
         }
     }
 
-    const items = user?.address?.split(';')
+    const items = user?.address?.split(';') ?? []
 
     return (
         <>
