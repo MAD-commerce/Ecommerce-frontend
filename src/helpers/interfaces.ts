@@ -4,6 +4,7 @@ interface AuthState {
 	user: null | User;
 	errorMessage: string | null;
 }
+
 interface User {
 	name: string;
 	uid: string;
@@ -22,13 +23,16 @@ interface entryPeticion {
 	email: string;
 	password: string;
 }
+
 interface entryPeticionGoogle {
 	email: string;
 	name: string;
 }
+
 interface entryPeticionRegister extends entryPeticion {
 	name: string;
 }
+
 interface loginPeticion {
 	data: {
 		ok: boolean;
