@@ -1,6 +1,6 @@
 import { useAuthStore, useForm } from '../../../hooks';
 
-import logo from '../../../assets/logo.png';
+// import logo from '../../../assets/logo.png';
 
 import '../auth.css';
 
@@ -37,7 +37,7 @@ export const Register = ({
 			<main className='main_auth'>
 				<div className='page grid'>
 					<div className='auth__box grid'>
-						<img className='auth__logo' src={logo} alt='logo' />
+						{/* <img className='auth__logo' src={logo} alt='logo' /> */}
 						<h1>Registrese</h1>
 						<form
 							className='form grid'
